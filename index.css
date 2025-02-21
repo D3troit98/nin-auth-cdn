@@ -486,8 +486,6 @@ flex-direction: row;
 align-items: center;
 padding: 0px;
 gap: 16px;
-
-
 align-self: stretch;
 flex-grow: 0;
 }

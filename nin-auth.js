@@ -21,7 +21,7 @@ function loadStep1() {
    }
 
    document.querySelector('.nin-auth-modal').innerHTML = `
-           <button class="nin-auth-close">
+           <button id="nin-auth-close" class="nin-auth-close">
        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
            <g clip-path="url(#clip0_9397_28110)">
                <path d="M15 5L5 15" stroke="white" stroke-width="1.5" stroke-linecap="round"
@@ -205,7 +205,7 @@ function loadStep2() {
    // Ensure the camera starts after the DOM update
    initCamera();
    document.querySelector('.nin-auth-modal').innerHTML = `
-   <button class="nin-auth-close">
+   <button id="nin-auth-close" class="nin-auth-close">
        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
            <g clip-path="url(#clip0_9397_28110)">
                <path d="M15 5L5 15" stroke="white" stroke-width="1.5" stroke-linecap="round"
@@ -348,7 +348,7 @@ function loadStep2() {
 
                    </button>
 
-                   <button class="back-button" onclick="loadStep1()">
+                   <button id="loadStep1" class="back-button" onclick="loadStep1()">
                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                            xmlns="http://www.w3.org/2000/svg">
                            <path d="M15 6L9 12L15 18" stroke="#00A86B" stroke-width="2" stroke-linecap="round"
@@ -359,7 +359,7 @@ function loadStep2() {
                    </button>
                </div>
                <div class="captured-actions">
-                   <button class="retake-button" onclick="retakePhoto()">
+                   <button id="retake-button" class="retake-button" onclick="retakePhoto()">
                        <svg width="21" height="20" viewBox="0 0 21 20" fill="none"
                            xmlns="http://www.w3.org/2000/svg">
                            <path
@@ -369,7 +369,7 @@ function loadStep2() {
                        </svg>
 
                        Retake selfie</button>
-                   <button class="use-photo-button" onclick="usePhoto()">Use photo</button>
+                   <button id="use-photo-button" class="use-photo-button" onclick="usePhoto()">Use photo</button>
                </div>
                <div class="nin-auth-footer">
                    <svg width="17" height="18" viewBox="0 0 17 18" fill="none"
@@ -391,7 +391,7 @@ function loadStep3() {
 
 
    document.querySelector('.nin-auth-modal').innerHTML = `
-             <button class="nin-auth-close">
+             <button id="nin-auth-close" class="nin-auth-close">
        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
            <g clip-path="url(#clip0_9397_28110)">
                <path d="M15 5L5 15" stroke="white" stroke-width="1.5" stroke-linecap="round"
@@ -529,10 +529,10 @@ function loadStep3() {
 
            <div class="nin-auth-form" id="nin-auth-form">
                <div class="button-container">
-                   <button onclick="consentScreen()" type="submit" class="nin-auth-submit">Continue
+                   <button id="consentScreen" onclick="consentScreen()" type="submit" class="nin-auth-submit">Continue
                    </button>
 
-                   <button  onclick="loadStep2()" class="back-button">
+                   <button  id="loadStep2" onclick="loadStep2()" class="back-button">
                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                            xmlns="http://www.w3.org/2000/svg">
                            <path d="M15 6L9 12L15 18" stroke="#00A86B" stroke-width="2" stroke-linecap="round"
@@ -583,7 +583,7 @@ function loadStep3() {
 
            <div class="nin-auth-form" id="nin-auth-form">
                <div class="button-container">
-                   <button onclick="loadStep1()" type="submit" class="nin-auth-submit">Restart
+                   <button id="loadStep1" onclick="loadStep1()" type="submit" class="nin-auth-submit">Restart
                        verification
                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                            xmlns="http://www.w3.org/2000/svg">
@@ -597,7 +597,7 @@ function loadStep3() {
 
                    </button>
 
-                   <button  onclick="loadStep2()" class="back-button">
+                   <button  id="loadStep2" onclick="loadStep2()" class="back-button">
                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                            xmlns="http://www.w3.org/2000/svg">
                            <path d="M15 6L9 12L15 18" stroke="#00A86B" stroke-width="2" stroke-linecap="round"
@@ -677,10 +677,10 @@ function consentScreen() {
                    </div>
                </div>
                <div class="consent-container-button-container">
-                   <button  onclick="loadStep1()" class="consent-container-reject-button">
+                   <button id="loadStep1"  onclick="loadStep1()" class="consent-container-reject-button">
                        Reject
                    </button>
-                   <button  onclick="loadThankyou()" class="consent-container-approve-button">
+                   <button id="loadThankyou"  onclick="loadThankyou()" class="consent-container-approve-button">
                        Approve
                    </button>
                </div>
@@ -722,7 +722,7 @@ function consentScreen() {
 
 function loadThankyou() {
    document.querySelector('.nin-auth-modal').innerHTML = `
-<button class="nin-auth-close">
+<button id="nin-auth-close" class="nin-auth-close">
        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
            <g clip-path="url(#clip0_9397_28110)">
                <path d="M15 5L5 15" stroke="white" stroke-width="1.5" stroke-linecap="round"
@@ -1035,10 +1035,14 @@ function ensureModalExists() {
         overlay.appendChild(modal); // Append inside overlay
     }
 }
-document.querySelector(".nin-auth-close").addEventListener("onclick", closewidget);
-document.querySelector(".use-photo-button").addEventListener("onclick", usePhoto);
-document.querySelector(".retake-button").addEventListener("onclick", retakePhoto);
+document.getElementById("nin-auth-close").addEventListener("onclick", closewidget);
+document.getElementById("use-photo-button").addEventListener("onclick", usePhoto);
+document.getElementById("retake-button").addEventListener("onclick", retakePhoto);
 document.getElementById("capturePhoto").addEventListener("onclick", capturePhoto);
+document.getElementById("consentScreen").addEventListener("onclick", consentScreen);
+document.getElementById("loadThankyou").addEventListener("onclick", loadThankyou);
+document.getElementById("loadStep1").addEventListener("onclick", loadStep1);
+document.getElementById("loadStep2").addEventListener("onclick", loadStep2);
 
 
 
