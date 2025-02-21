@@ -385,6 +385,9 @@ function loadStep2() {
        </div>
    </div>
    `;
+   document.getElementById("use-photo-button").addEventListener("onclick", usePhoto);
+   document.getElementById("retake-button").addEventListener("onclick", retakePhoto);
+   document.getElementById("loadStep1").addEventListener("onclick", loadStep1);
 }
 
 function loadStep3() {
@@ -621,6 +624,11 @@ function loadStep3() {
        </div>
    </div>
    `;
+
+   document.getElementById("capturePhoto").addEventListener("onclick", capturePhoto);
+   document.getElementById("consentScreen").addEventListener("onclick", consentScreen);
+   document.getElementById("loadStep1").addEventListener("onclick", loadStep1);
+   document.getElementById("loadStep2").addEventListener("onclick", loadStep2);
 }
 
 
@@ -698,10 +706,12 @@ function consentScreen() {
                YOUR DATA IS ENCRYPTED AND SECURED BY NINAUTH
            </div>
        </div>
+
    `;
 
    const consentList = document.getElementById("consentList");
-
+   document.getElementById("loadThankyou").addEventListener("onclick", loadThankyou);
+   document.getElementById("loadStep1").addEventListener("onclick", loadStep1);
    consents.forEach((consent, index) => {
        const itemDiv = document.createElement("div");
        itemDiv.classList.add("consent-container-list-container-alls-items");
@@ -1035,16 +1045,6 @@ function ensureModalExists() {
         overlay.appendChild(modal); // Append inside overlay
     }
 }
-document.getElementById("nin-auth-close").addEventListener("onclick", closewidget);
-document.getElementById("use-photo-button").addEventListener("onclick", usePhoto);
-document.getElementById("retake-button").addEventListener("onclick", retakePhoto);
-document.getElementById("capturePhoto").addEventListener("onclick", capturePhoto);
-document.getElementById("consentScreen").addEventListener("onclick", consentScreen);
-document.getElementById("loadThankyou").addEventListener("onclick", loadThankyou);
-document.getElementById("loadStep1").addEventListener("onclick", loadStep1);
-document.getElementById("loadStep2").addEventListener("onclick", loadStep2);
-
-
 
   window.NinAuth = {
     openModal: function () {
@@ -1052,6 +1052,7 @@ document.getElementById("loadStep2").addEventListener("onclick", loadStep2);
       document.querySelector(".nin-auth-overlay").style.display = "block";
       document.querySelector(".nin-auth-modal").style.display = "flex";
       loadStep1();
+      document.getElementById("nin-auth-close").addEventListener("onclick", closewidget);
     },
     closeModal: function () {
       document.querySelector(".nin-auth-overlay").style.display = "none";
