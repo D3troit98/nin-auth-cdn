@@ -1025,15 +1025,34 @@ function closewidget() {
    window.close(); // Closes the tab
 }
 
-loadStep1();
+function ensureModalExists() {
+    let overlay = document.querySelector(".overlay");
+    let modal = document.querySelector(".nin-auth-modal");
 
-window.NinAuth = {
+    if (!overlay) {
+      overlay = document.createElement("div");
+      overlay.className = "overlay";
+      document.body.appendChild(overlay);
+    }
+
+    if (!modal) {
+      modal = document.createElement("div");
+      modal.className = "nin-auth-modal";
+      overlay.appendChild(modal);
+    }
+  }
+
+
+  window.NinAuth = {
     openModal: function () {
-
-      document.getElementById("nin-auth-modal").style.display = "block";
+      ensureModalExists();
+      document.querySelector(".overlay").style.display = "block";
+      document.querySelector(".nin-auth-modal").style.display = "block";
+      loadStep1();
     },
     closeModal: function () {
-      document.getElementById("nin-auth-modal").style.display = "none";
+      document.querySelector(".overlay").style.display = "none";
+      document.querySelector(".nin-auth-modal").style.display = "none";
     },
   };
-})()
+})();
