@@ -11,19 +11,12 @@
 </head>
 <body>
     <h1>NIN Widget Test Page</h1>
-    <button id="open-widget">Verify NIN</button>
-
+ <button id="open-widget">Verify NIN</button>
     <script>
-        // Wait for DOM to be fully loaded
-        document.addEventListener('DOMContentLoaded', function () {
-        // Initialize the widget with test key
-
-
-            // Set up button click handler
-            document.getElementById('open-widget').addEventListener('click', function () {
-            window.NINAuth.loadStep1();
+        // Set up button click handler
+        document.getElementById('open-widget').addEventListener('click', function () {
+            window.NinAuth.openModal();
             });
-            });
-            </script>
+        </script>
 </body>
 </html>

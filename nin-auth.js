@@ -1026,32 +1026,31 @@ function closewidget() {
 }
 
 function ensureModalExists() {
-    let overlay = document.querySelector(".overlay");
+    let overlay = document.querySelector(".nin-auth-overlay");
     let modal = document.querySelector(".nin-auth-modal");
 
     if (!overlay) {
-      overlay = document.createElement("div");
-      overlay.className = "overlay";
-      document.body.appendChild(overlay);
+        overlay = document.createElement("div");
+        overlay.className = "nin-auth-overlay";
+        document.body.appendChild(overlay); // Append to body
     }
 
     if (!modal) {
-      modal = document.createElement("div");
-      modal.className = "nin-auth-modal";
-      overlay.appendChild(modal);
+        modal = document.createElement("div");
+        modal.className = "nin-auth-modal";
+        overlay.appendChild(modal); // Append inside overlay
     }
-  }
-
+}
 
   window.NinAuth = {
     openModal: function () {
       ensureModalExists();
-      document.querySelector(".overlay").style.display = "block";
+      document.querySelector(".nin-auth-overlay").style.display = "block";
       document.querySelector(".nin-auth-modal").style.display = "block";
       loadStep1();
     },
     closeModal: function () {
-      document.querySelector(".overlay").style.display = "none";
+      document.querySelector(".nin-auth-overlay").style.display = "none";
       document.querySelector(".nin-auth-modal").style.display = "none";
     },
   };
