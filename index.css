@@ -1,0 +1,838 @@
+@font-face {
+    font-family: "Plus Jakarta Sans";
+    src: url("fonts/PlusJakartaSans-VariableFont_wght.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Reset all styles */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Remove default font styles */
+body {
+  font-family: sans-serif; /* Change this to your preferred font */
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Reset heading and text elements */
+h1, h2, h3, h4, h5, h6, p, span, a, strong, em {
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Remove default list styles */
+ul, ol {
+  list-style: none;
+}
+
+/* Reset button and input styles */
+button, input, textarea, select {
+  background: none;
+  border: none;
+  outline: none;
+  font: inherit;
+}
+
+/* Remove table border spacing */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Make images responsive */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+body {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.nin-auth-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.nin-auth-modal {
+    /* Container */
+    width: 90vw;
+    max-width: 800px;
+    /* Ensures it doesn't exceed 800px */
+    min-height: 519px;
+    position: relative;
+    background: #FFFFFF;
+    border: 1px solid #F7F5F5;
+    box-shadow: 0px 4px 6px rgba(54, 69, 79, 0.15);
+    border-radius: 4px;
+    flex: none;
+    display: flex;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 1;
+}
+
+.nin-auth-close {
+    position: absolute;
+    right: 0;
+    top: -50px;
+    width: 36px;
+    height: 36px;
+    border-radius: 100%;
+    background: #1E1E1F;
+}
+
+button {
+    cursor: pointer;
+    background-color: #00A86B;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+    background-color: #025f3d;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    /* Elevation effect */
+}
+
+.nin-auth-steps {
+    width: 233px;
+    display: flex;
+    flex-direction: column;
+    gap: 49px;
+    padding-top: 56px;
+    padding-bottom: 56px;
+    padding-left: 20px;
+    background: #F8F6F2;
+
+}
+
+.nin-auth-step-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+}
+
+.nin-auth-step {
+    /* text */
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 10px;
+    width: 199px;
+    height: 24px;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: -2px 0px;
+
+
+}
+
+.nin-auth-submission-text {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+    /* or 22px */
+    color: #090E1D;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    transition: font-weight 0.3s ease;
+}
+
+
+.active {
+    font-weight: 700; /* Bold for active step */
+}
+
+.horizontal-container {
+    width: 24px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+
+.horizontal-line {
+    /* Line 7 */
+    height: 80px;
+    top: 0px;
+    width: 1px;
+    background-color: #E4E1DC;
+}
+
+.main-content {
+    /* Frame 1171276854 */
+    display: flex;
+    align-items: center;
+    padding-left: 83px;
+    padding-right: 83px;
+    flex-direction: column;
+    padding-top: 63px;
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 48px;
+    left: calc(50% - 400px/2 - 0.5px);
+    top: calc(50% - 341px/2 - 25.5px);
+
+
+}
+
+.header-container {
+    /* Frame 1171276851 */
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 8px;
+    align-self: stretch;
+
+}
+
+.mb-8 {
+    margin-bottom: 40px;
+}
+
+.header-container-2 {
+    /* Frame 1171276851 */
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 40px;
+    align-self: stretch;
+
+}
+
+
+h1 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 140%;
+    /* identical to box height, or 28px */
+    text-align: center;
+    color: #090E1D;
+    flex-grow: 1;
+}
+
+.heading-title {
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 140%;
+    /* identical to box height, or 21px */
+    text-align: center;
+    color: #354052;
+
+}
+
+.nin-auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+}
+
+.nin-auth-input {
+    padding: 16px;
+    border: 1px solid #9595A8;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 100%;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.nin-auth-input:focus {
+    border-color: #00A86B;
+    outline: none;
+    box-shadow: 0 0 4px #00A86B;
+}
+
+.nin-auth-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.nin-auth-checkbox input {
+    /* margin-top: 4px; */
+    accent-color: #00A86B;
+    width: 20px;
+    height: 20px;
+}
+
+.nin-auth-checkbox-label {
+    color: #354052;
+    font-size: 14px;
+}
+
+.nin-auth-submit {
+    background-color: #00A86B;
+    color: white;
+    border: none;
+    padding: 18px 16px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    width: 100%;
+}
+.nin-auth-submit:disabled {
+    background-color: #A0D8B3; /* Lighter green */
+    color: #F1F1F1; /* Muted text */
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.back-button {
+    background-color: white;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 18px 16px;
+    color: #00A86B;
+}
+
+.back-button:hover {
+    background-color: white;
+    box-shadow: none;
+}
+
+
+.button-container {
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+gap: 8px;
+}
+.nin-auth-footer {
+    text-align: center;
+    color: #4B5363;
+    font-size: 13px;
+    padding-bottom: 17px;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    justify-content: center;
+    gap: 4px;
+}
+
+
+.camera-container {
+    width: 100%;
+    max-width: 212px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#video-preview {
+    width: 100%;
+    height: 289px;
+    background: #0A1E29;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#picture-preview{
+    width: 100%;
+    height: 289px;
+    display: none;
+    background: #0A1E29;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.camera-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 6px solid #CDC7C7;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.spinner {
+    display: none;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #00A86B;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+}
+
+.status-message {
+max-width: 250px;
+display: none;
+margin: auto;
+}
+.status-content {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 16px;
+    gap: 10px;
+    border-radius: 4px;
+    align-self: stretch;
+    flex-grow: 0;
+    display: flex;
+}
+.status-message svg {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.status-message.error {
+    background: #FFF4E8;
+    color: #0A1E29;
+}
+
+.status-message.success {
+    background: #CEFFEA;
+    color: #008738;
+}
+
+.captured-actions {
+
+justify-content: center;
+align-items: center;
+flex-direction: column;
+gap: 8px;
+    display: none;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 16px;
+
+
+align-self: stretch;
+flex-grow: 0;
+}
+.retake-button {
+    background: white;
+    border: 1px solid #00A86B;
+    color: #00A86B;
+}
+
+.captured-actions button {
+    cursor: pointer;
+    /* button */
+box-sizing: border-box;
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 18px 16px;
+gap: 8px;
+height: 48px;
+width: 100%;
+max-width: 202px;
+border-radius: 4px;
+/* Retake selfie */
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 140%;
+}
+
+
+.use-photo-button {
+    background: #00A86B;
+    border: none;
+    color: white;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+
+
+
+/* conntent screen */
+.consent-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0px;
+gap: 40px;
+width: 100%;
+max-height: 597px;
+
+}
+
+.consent-container-second {
+    /* Frame 1171276873 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 10px;
+width: 100%;
+}
+
+.consent-container-button-container {
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 16px;
+opacity: 0.95;
+}
+
+.consent-container-reject-button {
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 18px 16px;
+gap: 8px;
+
+width: 192px;
+height: 48px;
+
+
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 140%;
+
+
+color: #FFFFFF;
+
+background: #EC3941;
+border-radius: 4px;
+
+}
+
+.consent-container-approve-button {
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 18px 16px;
+gap: 8px;
+
+width: 192px;
+height: 48px;
+
+/* Green/CTA */
+background: #00A86B;
+border-radius: 4px;
+/* Button */
+
+
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 140%;
+
+
+color: #FFFFFF;
+
+
+
+}
+
+
+.consent-container-company-container {
+
+box-sizing: border-box;
+width: 100%;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 12px 16px;
+gap: 12px;
+background: #FFFFFF;
+border: 1px solid #E1E6EF;
+border-radius: 10px;
+}
+
+.consent-container-company-container-info {
+    width: 100%;
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 12px;
+
+margin: 0 auto;
+
+}
+
+.consent-container-logo {
+width: 55px;
+height: 55px;
+}
+
+.consent-container-logo-detail {
+
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+padding: 0px;
+gap: 6px;
+
+width: 100%;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+}
+
+.consent-container-logo-text {
+    /* MTN */
+
+font-style: normal;
+font-weight: 600;
+font-size: 17px;
+line-height: 140%;
+/* identical to box height, or 24px */
+
+color: #090E1D;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+}
+
+.consent-container-logo-text-p {
+/* SIM Registration */
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 140%;
+/* identical to box height, or 20px */
+
+color: #090E1D;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+}
+
+.consent-container-list-container {
+box-sizing: border-box;
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 16px;
+gap: 24px;
+
+width: 100%;
+background: #FFFFFF;
+border: 1px solid #E1E6EF;
+border-radius: 10px;
+max-height: 120px;
+overflow-y: auto;
+}
+
+
+.consent-container-list-container-title {
+    /* text */
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px 0px 16px;
+gap: 4px;
+
+width: 100%;
+
+border-bottom: 1px solid #E1E6EF;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+}
+
+.consent-container-list-container-title p {
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 140%;
+/* or 22px */
+
+color: #090E1D;
+text-wrap: inherit;
+
+}
+.consent-container-list-container-alls {
+    /* text */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 32px;
+width: 100%;
+
+}
+
+.consent-container-list-container-alls-items {
+    display: none;
+    /* text */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 16px;
+}
+
+.consent-container-list-container-alls-items-number{
+    /* square-number-1 */
+
+width: 24px;
+height: 24px;
+border:1px solid #083C2F ;
+border-radius: 4px;
+color: #083C2F;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.consent-container-list-container-alls-items p {
+
+font-style: normal;
+font-weight: 500;
+font-size: 17px;
+line-height: 140%;
+/* identical to box height, or 24px */
+
+color: #090E1D;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+}
+
+@media (max-width: 768px) {
+.nin-auth-modal {
+    flex-direction: column;
+    width: 95vw;
+    min-height: auto;
+    padding: 20px;
+}
+.main-content{
+    padding-left: 26px;
+    padding-right: 26px;
+    padding-top: 0px;
+}
+
+.nin-auth-steps {
+    width: 100%;
+    padding: 15px;
+    gap: 20px;
+    display: none;
+}
+
+.nin-auth-close {
+    top: -40px;
+    right: 10px;
+}
+}

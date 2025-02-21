@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NIN Widget Test</title>
+  <!-- Include the local widget script -->
+  <script src="./nin-widget.js"></script>
+</head>
+<body>
+  <h1>NIN Widget Test Page</h1>
+  <button id="open-widget">Verify NIN</button>
+
+  <script>
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize the widget with test key
+      window.NINAuth.initialize('test_api_key', {
+        onSuccess: function(data) {
+          console.log('Success:', data);
+          alert('Verification successful!');
+        },
+        onError: function(error) {
+          console.error('Error:', error);
+          alert('Verification failed: ' + error);
+        },
+        onClose: function() {
+          console.log('Widget closed');
+        }
+      });
+
+      // Set up button click handler
+      document.getElementById('open-widget').addEventListener('click', function() {
+        window.NINAuth.verify();
+      });
+    });
+  </script>
+</body>
+</html>
