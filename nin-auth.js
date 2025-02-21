@@ -137,7 +137,7 @@ function loadStep1() {
                </p>
            </header>
 
-           <form class="nin-auth-form" id="nin-auth-form" onsubmit="submitData(event)" >
+           <form class="nin-auth-form" id="nin-auth-form">
                <input type="text" class="nin-auth-input" placeholder="Enter 11-digit NIN" maxlength="11"
                    pattern="[0-9]{11}" required>
 
