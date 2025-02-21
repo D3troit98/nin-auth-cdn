@@ -166,7 +166,7 @@ function loadStep1() {
    `;
 
 
-
+   document.getElementById("nin-auth-form").addEventListener("submit", submitData);
    let ninInput = document.querySelector(".nin-auth-input");
 
    ninInput.addEventListener("input", function (e) {
@@ -204,8 +204,6 @@ function submitData(event) {
 function loadStep2() {
    // Ensure the camera starts after the DOM update
    initCamera();
-
-
    document.querySelector('.nin-auth-modal').innerHTML = `
    <button class="nin-auth-close">
        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1046,7 +1044,7 @@ function ensureModalExists() {
     openModal: function () {
       ensureModalExists();
       document.querySelector(".nin-auth-overlay").style.display = "block";
-      document.querySelector(".nin-auth-modal").style.display = "block";
+      document.querySelector(".nin-auth-modal").style.display = "flex";
       loadStep1();
     },
     closeModal: function () {

@@ -5,76 +5,6 @@
     font-style: normal;
     src: url("https://D3troit98.github.io/nin-auth-cdn/fonts/PlusJakartaSans-VariableFont_wght.ttf") format("truetype");
 }
-
-/* Reset all styles */
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Remove default font styles */
-body {
-  font-family: sans-serif; /* Change this to your preferred font */
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Reset heading and text elements */
-h1, h2, h3, h4, h5, h6, p, span, a, strong, em {
-  font-weight: normal;
-  font-style: normal;
-  text-decoration: none;
-  color: inherit;
-}
-
-/* Remove default list styles */
-ul, ol {
-  list-style: none;
-}
-
-/* Reset button and input styles */
-button, input, textarea, select {
-  background: none;
-  border: none;
-  outline: none;
-  font: inherit;
-}
-
-/* Remove table border spacing */
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-/* Make images responsive */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    min-height: 100vh;
-    justify-content: center;
-    align-items: center;
-    /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; */
-    font-family: "Plus Jakarta Sans", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    scroll-behavior: smooth;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 .nin-auth-overlay {
     position: fixed;
     top: 0;
@@ -87,7 +17,80 @@ body {
     justify-content: center;
     z-index: 9999;
     display: none; /* Hidden by default */
+
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; */
+    font-family: "Plus Jakarta Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+
+/* Reset all styles */
+.nin-auth-overlay *,
+.nin-auth-overlay *::before,
+.nin-auth-overlay *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* Reset heading and text elements */
+.nin-auth-overlay h1,
+
+.nin-auth-overlay h2,
+.nin-auth-overlay h3,
+.nin-auth-overlay h4,
+.nin-auth-overlay h5,
+.nin-auth-overlay h6,
+.nin-auth-overlay p,
+.nin-auth-overlay span,
+.nin-auth-overlay a,
+.nin-auth-overlay strong,
+.nin-auth-overlay em {
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Remove default list styles */
+.nin-auth-overlay ul,
+.nin-auth-overlay ol {
+  list-style: none;
+}
+
+/* Reset button and input styles */
+.nin-auth-overlay button,
+.nin-auth-overlay input,.nin-auth-overlay textarea,.nin-auth-overlay select {
+  background: none;
+  border: none;
+  outline: none;
+  font: inherit;
+}
+
+/* Remove table border spacing */
+.nin-auth-overlay table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Make images responsive */
+.nin-auth-overlay img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+
 
 .nin-auth-modal {
     /* Container */
@@ -105,14 +108,12 @@ body {
     order: 1;
     align-self: stretch;
     flex-grow: 1;
-
     z-index: 10000; /* Ensure it's above the overlay */
     position: fixed; /* Fix the modal position */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%); /* Center it */
     background: white;
-    padding: 20px;
     z-index: 10000; /* Ensure it's above the overlay */
     display: none; /* Hidden by default */
 }
@@ -127,7 +128,7 @@ body {
     background: #1E1E1F;
 }
 
-button {
+.nin-auth-overlay button {
     cursor: pointer;
     background-color: #00A86B;
     color: white;
@@ -138,7 +139,7 @@ button {
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-button:hover {
+.nin-auth-overlay button:hover {
     background-color: #025f3d;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
     /* Elevation effect */
