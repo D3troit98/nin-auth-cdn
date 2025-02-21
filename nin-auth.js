@@ -331,7 +331,7 @@ function loadStep2() {
                </div>
 
                <div class="button-container">
-                   <button onclick="capturePhoto()" type="submit" class="nin-auth-submit">Take selfie
+                   <button id="capturePhoto" onclick="capturePhoto()" type="submit" class="nin-auth-submit">Take selfie
                        <div class="take-photo-icon"> <svg width="21" height="20" viewBox="0 0 21 20"
                                fill="none" xmlns="http://www.w3.org/2000/svg">
                                <path
@@ -865,11 +865,6 @@ function loadThankyou() {
    </div>
 `;
 }
-// Back Button (Go to Previous Step)
-function goBack() {
-   loadStep1();
-}
-
 
 // Initialize Camera
 async function initCamera() {
@@ -1020,7 +1015,8 @@ function usePhoto() {
 
 
 function closewidget() {
-   window.close(); // Closes the tab
+    document.querySelector(".nin-auth-overlay").style.display = "block";
+    document.querySelector(".nin-auth-modal").style.display = "flex";
 }
 
 function ensureModalExists() {
@@ -1039,6 +1035,12 @@ function ensureModalExists() {
         overlay.appendChild(modal); // Append inside overlay
     }
 }
+document.querySelector(".nin-auth-close").addEventListener("onclick", closewidget);
+document.querySelector(".use-photo-button").addEventListener("onclick", usePhoto);
+document.querySelector(".retake-button").addEventListener("onclick", retakePhoto);
+document.getElementById("capturePhoto").addEventListener("onclick", capturePhoto);
+
+
 
   window.NinAuth = {
     openModal: function () {
