@@ -1025,8 +1025,9 @@ function usePhoto() {
 
 
 function closewidget() {
-    document.querySelector(".nin-auth-overlay").style.display = "block";
-    document.querySelector(".nin-auth-modal").style.display = "flex";
+    console.log("closing")
+    document.querySelector(".nin-auth-overlay").style.display = "none";
+      document.querySelector(".nin-auth-modal").style.display = "none";
 }
 
 function ensureModalExists() {

@@ -41,13 +41,13 @@
 }
 
 /* Reset button and input styles */
-.nin-auth-overlay button,
+/* .nin-auth-overlay button,
 .nin-auth-overlay input,.nin-auth-overlay textarea,.nin-auth-overlay select {
   background: none;
   border: none;
   outline: none;
   font: inherit;
-}
+} */
 
 /* Remove table border spacing */
 .nin-auth-overlay table {
@@ -61,6 +61,24 @@
   height: auto;
   display: block;
 }
+
+.nin-auth-overlay button {
+    cursor: pointer;
+    background-color: #00A86B;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nin-auth-overlay button:hover {
+    background-color: #025f3d;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    /* Elevation effect */
+}
+
 
 .nin-auth-overlay {
     position: fixed;
@@ -127,22 +145,6 @@
     background: #1E1E1F;
 }
 
-.nin-auth-overlay button {
-    cursor: pointer;
-    background-color: #00A86B;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: 500;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.nin-auth-overlay button:hover {
-    background-color: #025f3d;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
-    /* Elevation effect */
-}
 
 .nin-auth-steps {
     width: 233px;
