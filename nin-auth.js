@@ -1025,9 +1025,7 @@ function usePhoto() {
 
 
 function closewidget() {
-    console.log("closing")
-    document.querySelector(".nin-auth-overlay").style.display = "none";
-      document.querySelector(".nin-auth-modal").style.display = "none";
+
 }
 
 function ensureModalExists() {
@@ -1053,7 +1051,11 @@ function ensureModalExists() {
       document.querySelector(".nin-auth-overlay").style.display = "block";
       document.querySelector(".nin-auth-modal").style.display = "flex";
       loadStep1();
-      document.getElementById("nin-auth-close").addEventListener("onclick", closewidget);
+      document.getElementById("nin-auth-close").addEventListener("onclick", ()=>{
+        console.log("closing")
+        document.querySelector(".nin-auth-overlay").style.display = "none";
+          document.querySelector(".nin-auth-modal").style.display = "none";
+      });
       console.log("close element",document.getElementById("nin-auth-close") )
     },
     closeModal: function () {
