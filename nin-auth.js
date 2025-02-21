@@ -331,7 +331,7 @@ function loadStep2() {
                </div>
 
                <div class="button-container">
-                   <button id="capturePhoto" onclick="capturePhoto()" type="submit" class="nin-auth-submit">Take selfie
+                   <button id="capturePhoto" click="capturePhoto()" type="submit" class="nin-auth-submit">Take selfie
                        <div class="take-photo-icon"> <svg width="21" height="20" viewBox="0 0 21 20"
                                fill="none" xmlns="http://www.w3.org/2000/svg">
                                <path
@@ -348,7 +348,7 @@ function loadStep2() {
 
                    </button>
 
-                   <button id="loadStep1" class="back-button" onclick="loadStep1()">
+                   <button id="loadStep1" class="back-button" click="loadStep1()">
                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                            xmlns="http://www.w3.org/2000/svg">
                            <path d="M15 6L9 12L15 18" stroke="#00A86B" stroke-width="2" stroke-linecap="round"
@@ -359,7 +359,7 @@ function loadStep2() {
                    </button>
                </div>
                <div class="captured-actions">
-                   <button id="retake-button" class="retake-button" onclick="retakePhoto()">
+                   <button id="retake-button" class="retake-button" click="retakePhoto()">
                        <svg width="21" height="20" viewBox="0 0 21 20" fill="none"
                            xmlns="http://www.w3.org/2000/svg">
                            <path
@@ -369,7 +369,7 @@ function loadStep2() {
                        </svg>
 
                        Retake selfie</button>
-                   <button id="use-photo-button" class="use-photo-button" onclick="usePhoto()">Use photo</button>
+                   <button id="use-photo-button" class="use-photo-button" click="usePhoto()">Use photo</button>
                </div>
                <div class="nin-auth-footer">
                    <svg width="17" height="18" viewBox="0 0 17 18" fill="none"
@@ -385,9 +385,9 @@ function loadStep2() {
        </div>
    </div>
    `;
-   document.getElementById("use-photo-button").addEventListener("onclick", usePhoto);
-   document.getElementById("retake-button").addEventListener("onclick", retakePhoto);
-   document.getElementById("loadStep1").addEventListener("onclick", loadStep1);
+   document.getElementById("use-photo-button").addEventListener("click", usePhoto);
+   document.getElementById("retake-button").addEventListener("click", retakePhoto);
+   document.getElementById("loadStep1").addEventListener("click", loadStep1);
 }
 
 function loadStep3() {
@@ -532,10 +532,10 @@ function loadStep3() {
 
            <div class="nin-auth-form" id="nin-auth-form">
                <div class="button-container">
-                   <button id="consentScreen" onclick="consentScreen()" type="submit" class="nin-auth-submit">Continue
+                   <button id="consentScreen" click="consentScreen()" type="submit" class="nin-auth-submit">Continue
                    </button>
 
-                   <button  id="loadStep2" onclick="loadStep2()" class="back-button">
+                   <button  id="loadStep2" click="loadStep2()" class="back-button">
                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                            xmlns="http://www.w3.org/2000/svg">
                            <path d="M15 6L9 12L15 18" stroke="#00A86B" stroke-width="2" stroke-linecap="round"
@@ -586,7 +586,7 @@ function loadStep3() {
 
            <div class="nin-auth-form" id="nin-auth-form">
                <div class="button-container">
-                   <button id="loadStep1" onclick="loadStep1()" type="submit" class="nin-auth-submit">Restart
+                   <button id="loadStep1" click="loadStep1()" type="submit" class="nin-auth-submit">Restart
                        verification
                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                            xmlns="http://www.w3.org/2000/svg">
@@ -600,7 +600,7 @@ function loadStep3() {
 
                    </button>
 
-                   <button  id="loadStep2" onclick="loadStep2()" class="back-button">
+                   <button  id="loadStep2" click="loadStep2()" class="back-button">
                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                            xmlns="http://www.w3.org/2000/svg">
                            <path d="M15 6L9 12L15 18" stroke="#00A86B" stroke-width="2" stroke-linecap="round"
@@ -625,10 +625,10 @@ function loadStep3() {
    </div>
    `;
 
-   document.getElementById("capturePhoto").addEventListener("onclick", capturePhoto);
-   document.getElementById("consentScreen").addEventListener("onclick", consentScreen);
-   document.getElementById("loadStep1").addEventListener("onclick", loadStep1);
-   document.getElementById("loadStep2").addEventListener("onclick", loadStep2);
+   document.getElementById("capturePhoto").addEventListener("click", capturePhoto);
+   document.getElementById("consentScreen").addEventListener("click", consentScreen);
+   document.getElementById("loadStep1").addEventListener("click", loadStep1);
+   document.getElementById("loadStep2").addEventListener("click", loadStep2);
 }
 
 
@@ -685,10 +685,10 @@ function consentScreen() {
                    </div>
                </div>
                <div class="consent-container-button-container">
-                   <button id="loadStep1"  onclick="loadStep1()" class="consent-container-reject-button">
+                   <button id="loadStep1"  click="loadStep1()" class="consent-container-reject-button">
                        Reject
                    </button>
-                   <button id="loadThankyou"  onclick="loadThankyou()" class="consent-container-approve-button">
+                   <button id="loadThankyou"  click="loadThankyou()" class="consent-container-approve-button">
                        Approve
                    </button>
                </div>
@@ -710,8 +710,8 @@ function consentScreen() {
    `;
 
    const consentList = document.getElementById("consentList");
-   document.getElementById("loadThankyou").addEventListener("onclick", loadThankyou);
-   document.getElementById("loadStep1").addEventListener("onclick", loadStep1);
+   document.getElementById("loadThankyou").addEventListener("click", loadThankyou);
+   document.getElementById("loadStep1").addEventListener("click", loadStep1);
    consents.forEach((consent, index) => {
        const itemDiv = document.createElement("div");
        itemDiv.classList.add("consent-container-list-container-alls-items");
@@ -858,7 +858,7 @@ function loadThankyou() {
 
    <div class="nin-auth-form" id="nin-auth-form">
        <div class="button-container">
-           <button onclick="closewidget()" type="submit" class="nin-auth-submit">Continue</button>
+           <button click="closewidget()" type="submit" class="nin-auth-submit">Continue</button>
        </div>
 
        <div class="nin-auth-footer">
@@ -1051,7 +1051,7 @@ function ensureModalExists() {
       document.querySelector(".nin-auth-overlay").style.display = "block";
       document.querySelector(".nin-auth-modal").style.display = "flex";
       loadStep1();
-      document.getElementById("nin-auth-close").addEventListener("onclick", ()=>{
+      document.getElementById("nin-auth-close").addEventListener("click", ()=>{
         console.log("closing")
         document.querySelector(".nin-auth-overlay").style.display = "none";
           document.querySelector(".nin-auth-modal").style.display = "none";
