@@ -1054,6 +1054,7 @@ function ensureModalExists() {
       document.querySelector(".nin-auth-modal").style.display = "flex";
       loadStep1();
       document.getElementById("nin-auth-close").addEventListener("onclick", closewidget);
+      console.log("close element",document.getElementById("nin-auth-close") )
     },
     closeModal: function () {
       document.querySelector(".nin-auth-overlay").style.display = "none";

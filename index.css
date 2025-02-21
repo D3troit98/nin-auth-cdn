@@ -62,22 +62,22 @@
   display: block;
 }
 
-/* .nin-auth-overlay button {
+  .nin-auth-overlay button {
     cursor: pointer;
-    background-color: #00A86B;
+    /* background-color: #00A86B;
     color: white;
     border: none;
     border-radius: 5px;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 500; */
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .nin-auth-overlay button:hover {
-    background-color: #025f3d;
+    /* background-color: #025f3d; */
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
 
-} */
+}
 
 
 .nin-auth-overlay {
