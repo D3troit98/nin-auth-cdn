@@ -1,9 +1,6 @@
 (function (
 ) {
     let stream;
-let videoElement;
-let capturedImage;
-
 const consents = [
    "Full Name", "Mobile Number", "Date of Birth"
 ];
@@ -538,7 +535,7 @@ function loadStep3() {
 
            <div class="nin-auth-form" id="nin-auth-form">
                <div class="button-container">
-                   <button id="consentScreen" click="consentScreen()" type="submit" class="nin-auth-submit">Continue
+                   <button id="consentScreen"  type="submit" class="nin-auth-submit">Continue
                    </button>
 
                    <button  id="loadStep2" click="loadStep2()" class="back-button">
@@ -630,7 +627,8 @@ function loadStep3() {
        </div>
    </div>
    `;
-   document.getElementById("consentScreen").addEventListener("click", consentScreen);
+//    document.getElementById("consentScreen").addEventListener("click", consentScreen);
+   document.getElementById("consentScreen").addEventListener("click", loadThankyou);
    document.getElementById("loadStep1").addEventListener("click", loadStep1);
    document.getElementById("loadStep2").addEventListener("click", loadStep2);
    document.getElementById("nin-auth-close").addEventListener("click", ()=>{
@@ -960,18 +958,18 @@ async function capturePhoto() {
 
    // Simulate API call with random responses
    const responses = [
-       // {
-       //     status: 400,
-       //     message: 'Multiple faces detected'
-       // },
-       // {
-       //     status: 400,
-       //     message: 'Poor lighting detected'
-       // },
-       // {
-       //     status: 400,
-       //     message: 'Face not properly positioned'
-       // },
+       {
+           status: 400,
+           message: 'Multiple faces detected'
+       },
+       {
+           status: 400,
+           message: 'Poor lighting detected'
+       },
+       {
+           status: 400,
+           message: 'Face not properly positioned'
+       },
        {
            status: 200,
            message: 'Selfie captured'
@@ -1043,8 +1041,8 @@ function usePhoto() {
 
 
 function closewidget() {
-        document.querySelector(".nin-auth-overlay").style.display = "none";
-      document.querySelector(".nin-auth-modal").style.display = "none";
+    document.querySelector(".nin-auth-overlay").style.display = "none";
+    document.querySelector(".nin-auth-modal").style.display = "none";
 }
 
 function ensureModalExists() {
