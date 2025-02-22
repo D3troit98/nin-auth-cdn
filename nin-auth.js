@@ -630,8 +630,6 @@ function loadStep3() {
        </div>
    </div>
    `;
-
-   document.getElementById("capturePhoto").addEventListener("click", capturePhoto);
    document.getElementById("consentScreen").addEventListener("click", consentScreen);
    document.getElementById("loadStep1").addEventListener("click", loadStep1);
    document.getElementById("loadStep2").addEventListener("click", loadStep2);
