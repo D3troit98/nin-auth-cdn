@@ -325,9 +325,10 @@ function loadStep2() {
                    <img id="picture-preview">
                    <div class="camera-overlay">
                    </div>
+                     <div class="status-message">
                </div>
-               <div class="status-message">
                </div>
+
 
                <div class="button-container">
                    <button id="capturePhoto" click="capturePhoto()"  class="nin-auth-submit">Take selfie
