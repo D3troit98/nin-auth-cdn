@@ -165,7 +165,9 @@ function loadStep1() {
    </div>
    `;
 
-
+   document.getElementById("nin-auth-close").addEventListener("click", ()=>{
+    closewidget()
+  });
    document.getElementById("nin-auth-form").addEventListener("submit", submitData);
    let ninInput = document.querySelector(".nin-auth-input");
 
@@ -331,7 +333,7 @@ function loadStep2() {
                </div>
 
                <div class="button-container">
-                   <button id="capturePhoto" click="capturePhoto()" type="submit" class="nin-auth-submit">Take selfie
+                   <button id="capturePhoto" click="capturePhoto()"  class="nin-auth-submit">Take selfie
                        <div class="take-photo-icon"> <svg width="21" height="20" viewBox="0 0 21 20"
                                fill="none" xmlns="http://www.w3.org/2000/svg">
                                <path
@@ -385,9 +387,13 @@ function loadStep2() {
        </div>
    </div>
    `;
+   document.getElementById("capturePhoto").addEventListener("click", capturePhoto);
    document.getElementById("use-photo-button").addEventListener("click", usePhoto);
    document.getElementById("retake-button").addEventListener("click", retakePhoto);
    document.getElementById("loadStep1").addEventListener("click", loadStep1);
+   document.getElementById("nin-auth-close").addEventListener("click", ()=>{
+    closewidget()
+  });
 }
 
 function loadStep3() {
@@ -629,6 +635,9 @@ function loadStep3() {
    document.getElementById("consentScreen").addEventListener("click", consentScreen);
    document.getElementById("loadStep1").addEventListener("click", loadStep1);
    document.getElementById("loadStep2").addEventListener("click", loadStep2);
+   document.getElementById("nin-auth-close").addEventListener("click", ()=>{
+    closewidget()
+  });
 }
 
 
@@ -712,6 +721,11 @@ function consentScreen() {
    const consentList = document.getElementById("consentList");
    document.getElementById("loadThankyou").addEventListener("click", loadThankyou);
    document.getElementById("loadStep1").addEventListener("click", loadStep1);
+   document.getElementById("nin-auth-close").addEventListener("click", ()=>{
+
+    document.querySelector(".nin-auth-overlay").style.display = "none";
+      document.querySelector(".nin-auth-modal").style.display = "none";
+  });
    consents.forEach((consent, index) => {
        const itemDiv = document.createElement("div");
        itemDiv.classList.add("consent-container-list-container-alls-items");
@@ -858,7 +872,7 @@ function loadThankyou() {
 
    <div class="nin-auth-form" id="nin-auth-form">
        <div class="button-container">
-           <button click="closewidget()" type="submit" class="nin-auth-submit">Continue</button>
+           <button id="closewidget"   class="nin-auth-submit">Continue</button>
        </div>
 
        <div class="nin-auth-footer">
@@ -874,6 +888,12 @@ function loadThankyou() {
        </div>
    </div>
 `;
+document.getElementById("nin-auth-close").addEventListener("click", ()=>{
+    closewidget()
+  });
+  document.getElementById("closewidget").addEventListener("click", ()=>{
+    closewidget()
+  })
 }
 
 // Initialize Camera
@@ -1025,7 +1045,8 @@ function usePhoto() {
 
 
 function closewidget() {
-
+        document.querySelector(".nin-auth-overlay").style.display = "none";
+      document.querySelector(".nin-auth-modal").style.display = "none";
 }
 
 function ensureModalExists() {
@@ -1051,12 +1072,6 @@ function ensureModalExists() {
       document.querySelector(".nin-auth-overlay").style.display = "block";
       document.querySelector(".nin-auth-modal").style.display = "flex";
       loadStep1();
-      document.getElementById("nin-auth-close").addEventListener("click", ()=>{
-        console.log("closing")
-        document.querySelector(".nin-auth-overlay").style.display = "none";
-          document.querySelector(".nin-auth-modal").style.display = "none";
-      });
-      console.log("close element",document.getElementById("nin-auth-close") )
     },
     closeModal: function () {
       document.querySelector(".nin-auth-overlay").style.display = "none";
