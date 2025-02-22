@@ -87,7 +87,6 @@
 .nin-auth-overlay button:active {
     /* background-color: #025f3d; */
     transform: scale(0.97);
-
 }
 
 .nin-auth-overlay button:disabled {
@@ -95,9 +94,7 @@
     cursor: not-allowed;
     opacity: 0.6;
     transform: none;
-
 }
-
 
 .nin-auth-overlay {
     position: fixed;
