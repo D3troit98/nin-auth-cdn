@@ -227,18 +227,229 @@ function usePhoto() {
 }
 
 function loadStep2() {
-    initCamera(); // Ensure the camera starts after DOM update
-    document.querySelector(".nin-auth-modal").innerHTML = `
-        <button id="nin-auth-close" class="nin-auth-close">X</button>
-        <video id="camera-feed" autoplay></video>
-        <img id="photo-preview" style="display: none; width: 100%;" />
-        <button id="capture-photo">Take Photo</button>
-        <button id="use-photo">Use Photo</button>
-    `;
+    // Ensure the camera starts after the DOM update
+    initCamera();
+    document.querySelector('.nin-auth-modal').innerHTML = `
+    <button id="nin-auth-close" class="nin-auth-close">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_9397_28110)">
+                <path d="M15 5L5 15" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M5 5L15 15" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </g>
+            <defs>
+                <clipPath id="clip0_9397_28110">
+                    <rect width="20" height="20" fill="white" />
+                </clipPath>
+            </defs>
+        </svg>
 
-    document.querySelector("#capture-photo").addEventListener("click", takePhoto);
-    document.querySelector("#use-photo").addEventListener("click", usePhoto);
-}
+    </button>
+    <div class="nin-auth-steps">
+        <svg width="118" height="32" viewBox="0 0 118 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M27.8848 21.9748V3.80762H31.016L39.1877 17.1735V3.80762H42.0388V21.9748H38.9076L30.7106 8.63495V21.9748H27.8848Z"
+                fill="#059661" />
+            <path d="M44.6797 21.9748V3.80762H47.6581V21.9748H44.6797Z" fill="#059661" />
+            <path
+                d="M50.3008 21.9748V3.80762H53.432L61.6036 17.1735V3.80762H64.4548V21.9748H61.3236L53.1265 8.63495V21.9748H50.3008Z"
+                fill="#059661" />
+            <path
+                d="M79.1135 21.9748L77.5351 17.6925H70.2036L68.6252 21.9748H65.5449L72.4692 3.80762H75.244L82.1938 21.9748H79.1135ZM71.171 15.0713H76.5678L73.8694 7.80435L71.171 15.0713Z"
+                fill="#0A1E29" />
+            <path
+                d="M94.4834 8.89453V21.9749H91.7086V19.7949C91.2673 20.5216 90.6818 21.1012 89.9521 21.5337C89.2223 21.9663 88.4077 22.1825 87.5083 22.1825C86.1166 22.1825 84.9923 21.7544 84.1352 20.8979C83.2782 20.0415 82.8496 18.9125 82.8496 17.5111V8.8946H85.6244V16.8622C85.6244 17.6927 85.862 18.3632 86.3372 18.8735C86.8124 19.384 87.4573 19.6392 88.2719 19.6392C89.3411 19.6392 90.1812 19.198 90.7921 18.3156C91.4031 17.4331 91.7086 16.2047 91.7086 14.6303V8.8946H94.4834V8.89453Z"
+                fill="#0A1E29" />
+            <path
+                d="M104.178 21.8705C103.567 22.0781 102.889 22.1819 102.142 22.1819C100.869 22.1819 99.8464 21.8186 99.0743 21.0919C98.3021 20.3652 97.916 19.2838 97.916 17.8478V11.3075H95.6758V8.89388H97.916V5.00098H100.691V8.89388H104V11.3075H100.691V17.692C100.691 18.3322 100.848 18.8209 101.162 19.1583C101.476 19.4958 101.904 19.6644 102.447 19.6644C103.058 19.6644 103.576 19.5606 104 19.353L104.178 21.8704L104.178 21.8705Z"
+                fill="#0A1E29" />
+            <path
+                d="M106.107 21.9744V3.59961H108.882V11.152C109.782 9.50836 111.182 8.68642 113.083 8.68642C114.542 8.68642 115.709 9.11468 116.583 9.97111C117.457 10.8276 117.894 11.9652 117.894 13.3839V21.9744H115.119V14.0328C115.119 13.1677 114.869 12.4843 114.368 11.9825C113.868 11.4808 113.184 11.2299 112.319 11.2299C111.25 11.2299 110.41 11.6798 109.799 12.5795C109.188 13.4792 108.882 14.725 108.882 16.3168V21.9745H106.107V21.9744Z"
+                fill="#0A1E29" />
+            <path
+                d="M98.5299 30.9971C98.3227 30.9971 98.1325 30.953 97.9593 30.8647C97.786 30.7764 97.6674 30.665 97.6033 30.5306V30.9511H97.123V26.873H97.6033V28.4628C97.6937 28.3246 97.8245 28.2132 97.996 28.1287C98.1674 28.0442 98.3472 28.002 98.5355 28.002C98.9649 28.002 99.3001 28.1412 99.5412 28.4196C99.7822 28.6979 99.9027 29.058 99.9027 29.4996C99.9027 29.9412 99.7813 30.3012 99.5383 30.5796C99.2954 30.858 98.9592 30.9972 98.5298 30.9972L98.5299 30.9971ZM97.8152 30.2686C97.9828 30.4624 98.206 30.5594 98.4847 30.5594C98.7634 30.5594 98.9876 30.4624 99.157 30.2686C99.3265 30.0746 99.4112 29.8183 99.4112 29.4996C99.4112 29.1808 99.3264 28.9245 99.157 28.7306C98.9875 28.5366 98.7634 28.4397 98.4847 28.4397C98.206 28.4397 97.9828 28.5366 97.8152 28.7306C97.6476 28.9245 97.5638 29.1808 97.5638 29.4996C97.5638 29.8183 97.6476 30.0746 97.8152 30.2686Z"
+                fill="#0A1E29" />
+            <path
+                d="M102.299 28.0488H102.791L101.299 32.0002H100.808L101.22 30.9115L100.107 28.0488H100.627L101.463 30.2722L102.299 28.0488Z"
+                fill="#0A1E29" />
+            <path
+                d="M104.639 30.9519V26.9199H105.209L107.204 30.1282V26.9199H107.707V30.9519H107.136L105.142 27.7551V30.9519H104.639Z"
+                fill="#0A1E29" />
+            <path d="M108.531 30.9519V26.9199H109.045V30.9519H108.531Z" fill="#0A1E29" />
+            <path
+                d="M109.863 30.9519V26.9199H110.485L111.818 30.1916L113.151 26.9199H113.773V30.9519H113.264V27.9106L112.033 30.9519H111.603L110.366 27.9106V30.9519H109.863Z"
+                fill="#0A1E29" />
+            <path
+                d="M116.333 30.9971C115.798 30.9971 115.344 30.8176 114.971 30.4586C114.599 30.0996 114.412 29.5917 114.412 28.9351C114.412 28.2785 114.599 27.7706 114.974 27.4116C115.349 27.0526 115.802 26.873 116.333 26.873C116.762 26.873 117.127 26.9873 117.426 27.2158C117.726 27.4443 117.917 27.7543 118 28.146L117.491 28.2612C117.427 27.9695 117.295 27.7429 117.093 27.5816C116.891 27.4203 116.636 27.3397 116.327 27.3397C115.913 27.3397 115.579 27.4799 115.325 27.7602C115.07 28.0405 114.943 28.4322 114.943 28.9352C114.943 29.4382 115.07 29.8289 115.325 30.1073C115.579 30.3857 115.913 30.5249 116.327 30.5249C116.633 30.5249 116.884 30.4481 117.082 30.2945C117.279 30.141 117.414 29.924 117.486 29.6437L118 29.7532C117.898 30.1372 117.7 30.4405 117.407 30.6632C117.113 30.886 116.755 30.9973 116.333 30.9973V30.9971Z"
+                fill="#0A1E29" />
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M11.9101 0C18.4879 0 23.8202 5.43628 23.8202 12.1423C23.8202 18.8484 18.4879 24.2846 11.9101 24.2846C5.33225 24.2846 0 18.8484 0 12.1423C0 5.43628 5.33225 0 11.9101 0ZM14.1398 18.9174H9.69391C8.67531 18.9445 7.844 17.893 8.08539 16.884L9.40758 12.3379C8.31215 11.3947 7.81251 9.90708 8.12648 8.43664C8.4411 6.96413 9.62531 5.76602 11.073 5.45552C12.2437 5.2037 13.4385 5.49329 14.3507 6.24769C15.263 7.00256 15.7863 8.12181 15.7863 9.31825C15.7863 10.4893 15.2796 11.5895 14.4128 12.337L15.738 16.8417C15.9955 17.8964 15.1808 18.9327 14.1402 18.9174H14.1398H14.1398Z"
+                fill="#059661" />
+            <path
+                d="M11.7482 30.2121C7.97114 30.2121 4.1941 28.7476 1.31716 25.8187C0.765396 25.2651 0.730184 24.3612 1.25026 23.7647C1.78727 23.1486 2.7116 23.0931 3.31576 23.6404L3.31661 23.6412C3.33797 23.6606 3.35888 23.6806 3.37913 23.7012C7.98963 28.4014 15.4884 28.4063 20.1043 23.7145C20.37 23.4365 20.7412 23.2639 21.1519 23.2639C21.96 23.2639 22.6153 23.9315 22.6153 24.7553C22.6153 25.151 22.4611 25.5312 22.1866 25.8109C19.3087 28.745 15.5285 30.212 11.7482 30.212H11.7482L11.7482 30.2121Z"
+                fill="#059661" fill-opacity="0.980392" />
+            <path
+                d="M21.1523 23.2647C20.7416 23.2647 20.3703 23.4373 20.1046 23.7152C17.7987 26.0591 14.7735 27.2307 11.748 27.2305V30.2129L11.7486 30.2128C15.5288 30.2128 19.309 28.7459 22.187 25.8118C22.4614 25.532 22.6156 25.1518 22.6156 24.7562C22.6155 23.9321 21.9605 23.2646 21.1523 23.2646V23.2647Z"
+                fill="#12BA74" fill-opacity="0.980392" />
+        </svg>
+
+        <div class="nin-auth-step-container">
+            <div class="nin-auth-step">
+               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+ <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM17.4571 9.45711L11 15.9142L6.79289 11.7071L8.20711 10.2929L11 13.0858L16.0429 8.04289L17.4571 9.45711Z" fill="#00A86B"/>
+ </svg>
+                <p class="nin-auth-submission-text active">
+                    NIN Submission
+                </p>
+            </div>
+            <div class="horizontal-container">
+                <div class="horizontal-line"></div>
+            </div>
+            <div class="nin-auth-step">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM17.4571 9.45711L11 15.9142L6.79289 11.7071L8.20711 10.2929L11 13.0858L16.0429 8.04289L17.4571 9.45711Z"
+                        fill="#E4E1DC" />
+                </svg>
+                <p class="nin-auth-submission-text">
+                    Facial Verification
+                </p>
+
+            </div>
+            <div class="horizontal-container">
+                <div class="horizontal-line"></div>
+            </div>
+            <div class="nin-auth-step">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM17.4571 9.45711L11 15.9142L6.79289 11.7071L8.20711 10.2929L11 13.0858L16.0429 8.04289L17.4571 9.45711Z"
+                        fill="#E4E1DC" />
+                </svg>
+                <p class="nin-auth-submission-text">
+                    Data Consent
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="main-content">
+          <div class="form-content">
+            <header class="header-container">
+                <h1>
+                    Take A Selfie
+                </h1>
+                <p class="heading-title">
+                    Please make sure that your face is in the frame and clearly visible
+                </p>
+            </header>
+
+            <div class="nin-auth-form" id="nin-auth-form">
+                <!-- webcam here -->
+
+                <div class="camera-container">
+                    <video id="video-preview" autoplay playsinline></video>
+                    <img id="picture-preview">
+                    <div class="camera-overlay">
+                    </div>
+                      <div class="status-message">
+                </div>
+                </div>
+                <smart-camera-web capture-id></smart-camera-web>
+
+
+                <div class="button-container">
+                    <button id="capturePhoto" click="capturePhoto()"  class="nin-auth-submit">Take selfie
+                        <div class="take-photo-icon"> <svg width="21" height="20" viewBox="0 0 21 20"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M4.66667 5.83301H5.5C5.94203 5.83301 6.36595 5.65741 6.67851 5.34485C6.99107 5.03229 7.16667 4.60837 7.16667 4.16634C7.16667 3.94533 7.25446 3.73337 7.41074 3.57709C7.56702 3.42081 7.77899 3.33301 8 3.33301H13C13.221 3.33301 13.433 3.42081 13.5893 3.57709C13.7455 3.73337 13.8333 3.94533 13.8333 4.16634C13.8333 4.60837 14.0089 5.03229 14.3215 5.34485C14.634 5.65741 15.058 5.83301 15.5 5.83301H16.3333C16.7754 5.83301 17.1993 6.0086 17.5118 6.32116C17.8244 6.63372 18 7.05765 18 7.49967V14.9997C18 15.4417 17.8244 15.8656 17.5118 16.1782C17.1993 16.4907 16.7754 16.6663 16.3333 16.6663H4.66667C4.22464 16.6663 3.80072 16.4907 3.48816 16.1782C3.17559 15.8656 3 15.4417 3 14.9997V7.49967C3 7.05765 3.17559 6.63372 3.48816 6.32116C3.80072 6.0086 4.22464 5.83301 4.66667 5.83301Z"
+                                    stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path
+                                    d="M8 10.833C8 11.496 8.26339 12.1319 8.73223 12.6008C9.20107 13.0696 9.83696 13.333 10.5 13.333C11.163 13.333 11.7989 13.0696 12.2678 12.6008C12.7366 12.1319 13 11.496 13 10.833C13 10.17 12.7366 9.53408 12.2678 9.06524C11.7989 8.5964 11.163 8.33301 10.5 8.33301C9.83696 8.33301 9.20107 8.5964 8.73223 9.06524C8.26339 9.53408 8 10.17 8 10.833Z"
+                                    stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg> </div>
+
+                        <div class="spinner"></div>
+
+                    </button>
+
+                    <button id="loadStep1" class="back-button" click="loadStep1()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 6L9 12L15 18" stroke="#00A86B" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        Back
+
+                    </button>
+                </div>
+                <div class="captured-actions">
+                    <button id="retake-button" class="retake-button" click="retakePhoto()">
+                        <svg width="21" height="20" viewBox="0 0 21 20" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M17.1673 9.16658C16.9635 7.7001 16.2832 6.3413 15.2312 5.2995C14.1792 4.25769 12.8138 3.59068 11.3454 3.40121C9.87697 3.21174 8.387 3.51032 7.10499 4.25096C5.82297 4.99159 4.82003 6.1332 4.25065 7.49992M3.83398 4.16658V7.49992H7.16732M3.83398 10.8332C4.03778 12.2997 4.71809 13.6585 5.77012 14.7003C6.82214 15.7421 8.18752 16.4091 9.65593 16.5986C11.1243 16.7881 12.6143 16.4895 13.8963 15.7489C15.1783 15.0082 16.1813 13.8666 16.7507 12.4999M17.1673 15.8332V12.4999H13.834"
+                                stroke="#00A86B" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+
+                        Retake selfie</button>
+                    <button id="use-photo-button" class="use-photo-button" click="usePhoto()">Use photo</button>
+                </div>
+                <div class="nin-auth-footer">
+                    <svg width="17" height="18" viewBox="0 0 17 18" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M13.4583 7.58366H14.1667C14.5579 7.58366 14.875 7.90078 14.875 8.29199V15.3753C14.875 15.7665 14.5579 16.0837 14.1667 16.0837H2.83333C2.44213 16.0837 2.125 15.7665 2.125 15.3753V8.29199C2.125 7.90078 2.44213 7.58366 2.83333 7.58366H3.54167V6.87533C3.54167 4.13692 5.76159 1.91699 8.5 1.91699C11.2384 1.91699 13.4583 4.13692 13.4583 6.87533V7.58366ZM12.0417 7.58366V6.87533C12.0417 4.91932 10.456 3.33366 8.5 3.33366C6.54399 3.33366 4.95833 4.91932 4.95833 6.87533V7.58366H12.0417ZM7.79167 10.417V13.2503H9.20833V10.417H7.79167Z"
+                            fill="#4B5363" />
+                    </svg>
+                    YOUR DATA IS ENCRYPTED AND SECURED BY NINAUTH
+                </div>
+            </div>
+
+        </div>
+    </div>
+    `;
+    document.getElementById("capturePhoto").addEventListener("click", capturePhoto);
+    document.getElementById("use-photo-button").addEventListener("click", usePhoto);
+    document.getElementById("retake-button").addEventListener("click", retakePhoto);
+    document.getElementById("loadStep1").addEventListener("click", loadStep1);
+    document.getElementById("nin-auth-close").addEventListener("click", ()=>{
+     closewidget()
+   });
+   const app = document.querySelector("smart-camera-web");
+
+   const postContent = async (data) => {
+     const options = {
+       method: "POST",
+       headers: {
+         "Content-Type": "application/json",
+       },
+       body: JSON.stringify(data),
+     };
+
+     try {
+       const response = await fetch("/", options);
+       const json = await response.json();
+
+       return json;
+     } catch (e) {
+       throw e;
+     }
+   };
+
+   app.addEventListener("smart-camera-web.publish", async (e) => {
+     try {
+       const response = await postContent(e.detail);
+
+       console.log(response);
+     } catch (e) {
+       console.error(e);
+     }
+   });
+ }
 
 function loadStep3() {
 
@@ -924,6 +1135,7 @@ function ensureModalExists() {
             console.error("Failed to load Smile Identity SDK.");
         }
     };
+
 
     script.onerror = function () {
         console.error("Error loading Smile Identity script.");
