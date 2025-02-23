@@ -405,9 +405,8 @@ function loadStep2() {
 
    app.addEventListener("smart-camera-web.publish", async (e) => {
      try {
-       const response = await postContent(e.detail);
-
-        console.log(response);
+    //    const response = await postContent(e.detail);
+        console.log(e.detail);
         loadThankyou()
      } catch (e) {
        console.error(e);
