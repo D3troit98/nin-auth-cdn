@@ -342,7 +342,7 @@ function loadStep2() {
                     Please make sure that your face is in the frame and clearly visible
                 </p>
             </header>
-
+<smart-camera-web></smart-camera-web>
             <div class="nin-auth-form" id="nin-auth-form">
                 <!-- webcam here -->
 
@@ -1120,7 +1120,7 @@ function ensureModalExists() {
 }
 
     const script = document.createElement("script");
-    script.src = "https://cdn.smileidentity.com/js/v1.4.2/smart-camera-web.js";
+    script.src = "https://cdn.smileidentity.com/js/v1.4.5/smart-camera-web.js";
     script.async = true;
     document.head.appendChild(script);
 
