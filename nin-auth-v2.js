@@ -354,7 +354,7 @@ function loadStep2() {
                       <div class="status-message">
                 </div>
                 </div>
-                <smart-camera-web capture-id></smart-camera-web>
+               <selfie-capture-screens></selfie-capture-screens>
 
 
                 <div class="button-container">
@@ -419,7 +419,7 @@ function loadStep2() {
     document.getElementById("nin-auth-close").addEventListener("click", ()=>{
      closewidget()
    });
-   const app = document.querySelector("smart-camera-web");
+   const app = document.querySelector("selfie-capture-screens");
 
    const postContent = async (data) => {
      const options = {
@@ -440,7 +440,7 @@ function loadStep2() {
      }
    };
 
-   app.addEventListener("smart-camera-web.publish", async (e) => {
+   app.addEventListener("selfie-capture-screens.publish", async (e) => {
      try {
        const response = await postContent(e.detail);
 
