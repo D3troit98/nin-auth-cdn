@@ -342,21 +342,14 @@ function loadStep2() {
                     Please make sure that your face is in the frame and clearly visible
                 </p>
             </header>
-<smart-camera-web></smart-camera-web>
+
             <div class="nin-auth-form" id="nin-auth-form">
                 <!-- webcam here -->
 
-                <div class="camera-container">
-                    <video id="video-preview" autoplay playsinline></video>
-                    <img id="picture-preview">
-                    <div class="camera-overlay">
-                    </div>
-                      <div class="status-message">
-                </div>
+               <smart-camera-web></smart-camera-web>
                 </div>
 
                 <div class="button-container">
-                  <selfie-capture-screens></selfie-capture-screens>
                     <button id="capturePhoto" click="capturePhoto()"  class="nin-auth-submit">Take selfie
                         <div class="take-photo-icon"> <svg width="21" height="20" viewBox="0 0 21 20"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -418,9 +411,10 @@ function loadStep2() {
     document.getElementById("nin-auth-close").addEventListener("click", ()=>{
      closewidget()
    });
-   const app = document.querySelector("selfie-capture-screens");
+   const app = document.querySelector("smart-camera-web");
 
    const postContent = async (data) => {
+    console.log("data",data)
      const options = {
        method: "POST",
        headers: {
@@ -439,11 +433,13 @@ function loadStep2() {
      }
    };
 
-   app.addEventListener("selfie-capture-screens.publish", async (e) => {
+   app.addEventListener("smart-camera-web.publish", async (e) => {
      try {
        const response = await postContent(e.detail);
 
        console.log(response);
+       document.querySelector('.button-container').style.display = 'none';
+       document.querySelector('.captured-actions').style.display = 'flex';
      } catch (e) {
        console.error(e);
      }
