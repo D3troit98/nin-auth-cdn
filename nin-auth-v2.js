@@ -1121,13 +1121,13 @@ function ensureModalExists() {
 }
 
     const script = document.createElement("script");
-    script.src = "https://cdn.smileidentity.com/js/v1.4.2/selfie-capture-screens.js";
+    script.src = "https://cdn.smileidentity.com/js/v1.4.2/smart-camera-web.js";
     script.async = true;
     document.head.appendChild(script);
 
     script.onload = function () {
         console.log("Smile Identity script loaded!");
-
+        console.log(window)
         // Ensure the SmileIdentity SDK is available before using it
         if (typeof window.SmileIdentity !== "undefined") {
             console.log("Smile Identity SDK is ready to use.");
