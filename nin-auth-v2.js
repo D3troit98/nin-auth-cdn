@@ -382,7 +382,7 @@ function loadStep2() {
      closewidget()
    });
    const app = document.querySelector("smart-camera-web");
-
+   console.log("app",app)
    const postContent = async (data) => {
     console.log("data",data)
      const options = {
@@ -404,6 +404,7 @@ function loadStep2() {
    };
 
    app.addEventListener("smart-camera-web.publish", async (e) => {
+    console.log("publishing", e)
      try {
     //    const response = await postContent(e.detail);
         console.log(e.detail);
