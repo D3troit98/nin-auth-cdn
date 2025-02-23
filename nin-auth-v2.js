@@ -354,10 +354,9 @@ function loadStep2() {
                       <div class="status-message">
                 </div>
                 </div>
-               <selfie-capture-screens></selfie-capture-screens>
-
 
                 <div class="button-container">
+                  <selfie-capture-screens></selfie-capture-screens>
                     <button id="capturePhoto" click="capturePhoto()"  class="nin-auth-submit">Take selfie
                         <div class="take-photo-icon"> <svg width="21" height="20" viewBox="0 0 21 20"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
