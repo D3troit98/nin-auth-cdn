@@ -1121,7 +1121,7 @@ function ensureModalExists() {
 }
 
     const script = document.createElement("script");
-    script.src = "https://cdn.smileidentity.com/js/v1.4.2/smart-camera-web.js";
+    script.src = "https://cdn.smileidentity.com/js/v1.4.2/selfie-capture-screens.js";
     script.async = true;
     document.head.appendChild(script);
 
