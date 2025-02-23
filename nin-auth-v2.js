@@ -228,7 +228,7 @@ function usePhoto() {
 
 function loadStep2() {
     // Ensure the camera starts after the DOM update
-    initCamera();
+    // initCamera();
     document.querySelector('.nin-auth-modal').innerHTML = `
     <button id="nin-auth-close" class="nin-auth-close">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -350,23 +350,6 @@ function loadStep2() {
                 </div>
 
                 <div class="button-container">
-                    <button id="capturePhoto" click="capturePhoto()"  class="nin-auth-submit">Take selfie
-                        <div class="take-photo-icon"> <svg width="21" height="20" viewBox="0 0 21 20"
-                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M4.66667 5.83301H5.5C5.94203 5.83301 6.36595 5.65741 6.67851 5.34485C6.99107 5.03229 7.16667 4.60837 7.16667 4.16634C7.16667 3.94533 7.25446 3.73337 7.41074 3.57709C7.56702 3.42081 7.77899 3.33301 8 3.33301H13C13.221 3.33301 13.433 3.42081 13.5893 3.57709C13.7455 3.73337 13.8333 3.94533 13.8333 4.16634C13.8333 4.60837 14.0089 5.03229 14.3215 5.34485C14.634 5.65741 15.058 5.83301 15.5 5.83301H16.3333C16.7754 5.83301 17.1993 6.0086 17.5118 6.32116C17.8244 6.63372 18 7.05765 18 7.49967V14.9997C18 15.4417 17.8244 15.8656 17.5118 16.1782C17.1993 16.4907 16.7754 16.6663 16.3333 16.6663H4.66667C4.22464 16.6663 3.80072 16.4907 3.48816 16.1782C3.17559 15.8656 3 15.4417 3 14.9997V7.49967C3 7.05765 3.17559 6.63372 3.48816 6.32116C3.80072 6.0086 4.22464 5.83301 4.66667 5.83301Z"
-                                    stroke="white" stroke-width="1.5" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                                <path
-                                    d="M8 10.833C8 11.496 8.26339 12.1319 8.73223 12.6008C9.20107 13.0696 9.83696 13.333 10.5 13.333C11.163 13.333 11.7989 13.0696 12.2678 12.6008C12.7366 12.1319 13 11.496 13 10.833C13 10.17 12.7366 9.53408 12.2678 9.06524C11.7989 8.5964 11.163 8.33301 10.5 8.33301C9.83696 8.33301 9.20107 8.5964 8.73223 9.06524C8.26339 9.53408 8 10.17 8 10.833Z"
-                                    stroke="white" stroke-width="1.5" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg> </div>
-
-                        <div class="spinner"></div>
-
-                    </button>
-
                     <button id="loadStep1" class="back-button" click="loadStep1()">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -376,19 +359,6 @@ function loadStep2() {
                         Back
 
                     </button>
-                </div>
-                <div class="captured-actions">
-                    <button id="retake-button" class="retake-button" click="retakePhoto()">
-                        <svg width="21" height="20" viewBox="0 0 21 20" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M17.1673 9.16658C16.9635 7.7001 16.2832 6.3413 15.2312 5.2995C14.1792 4.25769 12.8138 3.59068 11.3454 3.40121C9.87697 3.21174 8.387 3.51032 7.10499 4.25096C5.82297 4.99159 4.82003 6.1332 4.25065 7.49992M3.83398 4.16658V7.49992H7.16732M3.83398 10.8332C4.03778 12.2997 4.71809 13.6585 5.77012 14.7003C6.82214 15.7421 8.18752 16.4091 9.65593 16.5986C11.1243 16.7881 12.6143 16.4895 13.8963 15.7489C15.1783 15.0082 16.1813 13.8666 16.7507 12.4999M17.1673 15.8332V12.4999H13.834"
-                                stroke="#00A86B" stroke-width="1.5" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-
-                        Retake selfie</button>
-                    <button id="use-photo-button" class="use-photo-button" click="usePhoto()">Use photo</button>
                 </div>
                 <div class="nin-auth-footer">
                     <svg width="17" height="18" viewBox="0 0 17 18" fill="none"
@@ -404,9 +374,9 @@ function loadStep2() {
         </div>
     </div>
     `;
-    document.getElementById("capturePhoto").addEventListener("click", capturePhoto);
-    document.getElementById("use-photo-button").addEventListener("click", usePhoto);
-    document.getElementById("retake-button").addEventListener("click", retakePhoto);
+    // document.getElementById("capturePhoto").addEventListener("click", capturePhoto);
+    // document.getElementById("use-photo-button").addEventListener("click", usePhoto);
+    // document.getElementById("retake-button").addEventListener("click", retakePhoto);
     document.getElementById("loadStep1").addEventListener("click", loadStep1);
     document.getElementById("nin-auth-close").addEventListener("click", ()=>{
      closewidget()
@@ -437,9 +407,8 @@ function loadStep2() {
      try {
        const response = await postContent(e.detail);
 
-       console.log(response);
-       document.querySelector('.button-container').style.display = 'none';
-       document.querySelector('.captured-actions').style.display = 'flex';
+        console.log(response);
+        loadThankyou()
      } catch (e) {
        console.error(e);
      }
@@ -1122,13 +1091,6 @@ function ensureModalExists() {
 
     script.onload = function () {
         console.log("Smile Identity script loaded!");
-        console.log(window)
-        // Ensure the SmileIdentity SDK is available before using it
-        if (typeof window.SmileIdentity !== "undefined") {
-            console.log("Smile Identity SDK is ready to use.");
-        } else {
-            console.error("Failed to load Smile Identity SDK.");
-        }
     };
 
 
