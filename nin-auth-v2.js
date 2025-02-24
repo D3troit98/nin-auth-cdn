@@ -403,7 +403,7 @@ function loadStep2() {
      }
    };
 
-   app.addEventListener("smart-camera-web.publish", async (e) => {
+   app.addEventListener("imagesComputed", async (e) => {
     console.log("publishing", e)
      try {
     //    const response = await postContent(e.detail);
@@ -1097,39 +1097,6 @@ function ensureModalExists() {
     script.onerror = function () {
         console.error("Error loading Smile Identity script.");
     };
-
-    const app = document.querySelector("smart-camera-web");
-    console.log("app",app)
-    const postContent = async (data) => {
-     console.log("data",data)
-      const options = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      };
-
-      try {
-        const response = await fetch("/", options);
-        const json = await response.json();
-
-        return json;
-      } catch (e) {
-        throw e;
-      }
-    };
-
-    app.addEventListener("smart-camera-web.publish", async (e) => {
-     console.log("publishing", e)
-      try {
-     //    const response = await postContent(e.detail);
-         console.log(e.detail);
-         loadThankyou()
-      } catch (e) {
-        console.error(e);
-      }
-    });
   window.NinAuth = {
     openModal: function () {
       ensureModalExists();
