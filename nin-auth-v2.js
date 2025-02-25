@@ -402,16 +402,13 @@ function loadStep2() {
        throw e;
      }
    };
-const eventTypes = Object.keys(app.__proto__);
-
-console.log(eventTypes);
 
    app.addEventListener("imagesComputed", async (e) => {
     console.log("publishing", e)
      try {
     //    const response = await postContent(e.detail);
         console.log(e.detail);
-        loadThankyou()
+        // loadThankyou()
      } catch (e) {
        console.error(e);
      }

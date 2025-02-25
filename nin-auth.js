@@ -325,8 +325,9 @@ function loadStep2() {
                    <img id="picture-preview">
                    <div class="camera-overlay">
                    </div>
-                     <div class="status-message">
+
                </div>
+                  <div class="status-message">
                </div>
 
 
