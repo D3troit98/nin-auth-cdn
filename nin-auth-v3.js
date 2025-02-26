@@ -233,10 +233,6 @@ function initBlusaltVerification(imageData) {
         document.getElementById("failedContainer").style.display = isSuccess ? "none" : "block";
     }
 
-
-
-
-
     const params = {
         apikey: "YOUR_API_KEY",
         clientid: "YOUR_CLIENT_ID",
@@ -244,9 +240,19 @@ function initBlusaltVerification(imageData) {
         serviceId: "36",
         callback: function(response) {
             console.log("Verification completed", response);
-            // Handle successful verification
-            loadStep3()
-            showResult(true);
+
+            // Check if the verification was successful
+            // The exact response structure depends on Blusalt's API
+            // You may need to adjust this condition based on their actual response format
+            if (response && response.status === "success") {
+                // Handle successful verification
+                loadStep3();
+                showResult(true);
+            } else {
+                // Handle failed verification
+                console.error("Verification failed:", response);
+                showResult(false);
+            }
         },
         onClose: function() {
             console.log("Widget closed");
@@ -266,11 +272,13 @@ function initBlusaltVerification(imageData) {
             window.BlusaltWidgets.showWidget(params);
         } catch (error) {
             console.error("Error showing Blusalt widget:", error);
-            showErrorMessage("Verification service is currently unavailable. Please try again later.");
+            // showErrorMessage("Verification service is currently unavailable. Please try again later.");
+            showResult(false);
         }
     } else {
         console.error("Blusalt SDK not loaded");
-        showErrorMessage("Verification service is not available. Please refresh and try again.");
+        showResult(false);
+        // showErrorMessage("Verification service is not available. Please refresh and try again.");
     }
 }
 
