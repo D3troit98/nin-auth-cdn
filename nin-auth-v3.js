@@ -256,29 +256,27 @@ function initBlusaltVerification(imageData) {
         },
         onClose: function() {
             console.log("Widget closed");
-            // Handle user closing the widget
+            // Typically, on close without completion should be treated as failure
+            // But this depends on your specific UX flow
+            // showResult(false);
         },
         primaryColor: "rgba(5, 150, 97, 1)",
         otherParams: {
             imageUrl: imageData,
             // Add other parameters if needed
         }
-
     };
-
 
     if (window.BlusaltWidgets) {
         try {
             window.BlusaltWidgets.showWidget(params);
         } catch (error) {
             console.error("Error showing Blusalt widget:", error);
-            // showErrorMessage("Verification service is currently unavailable. Please try again later.");
             showResult(false);
         }
     } else {
         console.error("Blusalt SDK not loaded");
         showResult(false);
-        // showErrorMessage("Verification service is not available. Please refresh and try again.");
     }
 }
 
