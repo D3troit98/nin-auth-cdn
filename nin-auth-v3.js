@@ -729,7 +729,7 @@ function loadStep2() {
         // Handle any errors that occur during processing
         showErrorMessage("An error occurred while processing your image.");
     }
-});
+})}
 
 
 
