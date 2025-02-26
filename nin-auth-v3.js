@@ -226,6 +226,38 @@ function usePhoto() {
     }
 }
 
+function initBlusaltVerification(imageData) {
+    // Assuming imageData is a base64 string or URL to the captured selfie
+    const params = {
+        apikey: "YOUR_API_KEY", // Replace with your actual API key
+        clientid: "YOUR_CLIENT_ID", // Replace with your actual client ID
+        appname: "YOUR_APP_NAME", // Replace with your actual app name
+        serviceId: "36",
+        callback: function(response) {
+            console.log("Verification completed", response);
+            // Handle successful verification
+            // Perhaps load the next step
+            loadStep3(); // Assuming you have a loadStep3 function for Data Consent
+        },
+        onClose: function() {
+            console.log("Widget closed");
+            // Handle widget close
+        },
+        primaryColor: "rgba(5, 150, 97, 1)", // Using the green color from your UI
+        otherParams: {
+            imageUrl: imageData,
+            // Optionally add phone_number if you have it
+            // phone_number: "+234XXXXXXXXXX"
+        }
+    };
+
+    if (window.BlusaltWidgets) {
+        window.BlusaltWidgets.showWidget(params);
+    } else {
+        console.error("Blusalt SDK not loaded");
+    }
+}
+
 function loadStep2() {
     // Ensure the camera starts after the DOM update
     // initCamera();
@@ -407,13 +439,20 @@ function loadStep2() {
     console.log("publishing", e)
      try {
     //    const response = await postContent(e.detail);
+     // Assuming e.detail contains image data
+     const imageData = e.detail.imageUrl || e.detail.base64Image || e.detail.image;
+
+     // Initialize Blusalt verification with the captured image
+        initBlusaltVerification(imageData);
         console.log(e.detail);
-        loadThankyou()
+        // loadThankyou()
      } catch (e) {
        console.error(e);
      }
    });
  }
+
+
 
 function loadStep3() {
 
@@ -1084,19 +1123,34 @@ function ensureModalExists() {
     }
 }
 
-    const script = document.createElement("script");
-    script.src = "https://cdn.smileidentity.com/js/v1.4.5/smart-camera-web.js";
-    script.async = true;
-    document.head.appendChild(script);
+    // Load Blusalt SDK
+const blusaltScript = document.createElement("script");
+blusaltScript.src = "https://widgets-sdk.blusalt.net/WidgetSDk.js";
+blusaltScript.async = true;
+document.head.appendChild(blusaltScript);
 
-    script.onload = function () {
-        console.log("Smile Identity script loaded!");
-    };
+blusaltScript.onload = function () {
+    console.log("Blusalt SDK loaded!");
+};
 
+blusaltScript.onerror = function () {
+    console.error("Error loading Blusalt SDK.");
+};
 
-    script.onerror = function () {
-        console.error("Error loading Smile Identity script.");
-    };
+// Load Smile Identity
+const smileScript = document.createElement("script");
+smileScript.src = "https://cdn.smileidentity.com/js/v1.4.5/smart-camera-web.js";
+smileScript.async = true;
+document.head.appendChild(smileScript);
+
+smileScript.onload = function () {
+    console.log("Smile Identity script loaded!");
+};
+
+smileScript.onerror = function () {
+    console.error("Error loading Smile Identity script.");
+};
+
   window.NinAuth = {
     openModal: function () {
       ensureModalExists();
