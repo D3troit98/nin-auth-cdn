@@ -14,11 +14,31 @@
 <body>
     <h1>NIN Widget Test Page</h1>
  <button id="open-widget">Verify NIN</button>
-    <script>
-        // Set up button click handler
-        document.getElementById('open-widget').addEventListener('click', function () {
-            window.NinAuth.openModal();
-            });
-        </script>
+ <script>
+    // Initialize with configuration
+    window.NinAuth.initialize({
+    baseUrl: "https://your-api-base-url",
+    clientId: "your-client-id",
+    clientSecret: "your-client-secret",
+    enterpriseId: "your-enterprise-id"
+    });
+
+    // Set up button click handler
+    document.getElementById('open-widget').addEventListener('click', function() {
+    window.NinAuth.openModal();
+    });
+// You can also pass the configuration when opening the modal
+document.getElementById('open-widget-with-config').addEventListener('click', function() {
+window.NinAuth.openModal({
+baseUrl: "https://your-api-base-url",
+clientId: "your-client-id",
+clientSecret: "your-client-secret",
+enterpriseId: "your-enterprise-id",
+nin: "12345678906", // Pre-fill NIN if available
+note: "account creation" // Pre-fill note if available
+});
+});
+</script>
+
 </body>
 </html>

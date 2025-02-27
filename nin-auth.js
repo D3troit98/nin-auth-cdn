@@ -1,11 +1,22 @@
 (function (
 ) {
-    let stream;
-const consents = [
-   "Full Name", "Mobile Number", "Date of Birth"
-];
-    // Array to store captured images
-    let capturedImages = [];
+
+// const consents = [
+//    "Full Name", "Mobile Number", "Date of Birth"
+// ];
+let stream;
+let capturedImages = []; // Global array to store captured images
+let nin = ""; // Global variable to store NIN
+let note = ""; // Global variable to store note/reason
+
+   // Configuration object that can be set when initializing the widget
+   let config = {
+    baseUrl: "",
+    clientId: "",
+    clientSecret: "",
+    enterpriseId: ""
+};
+
 
 // Initial Step (Load Form)
 function loadStep1() {
@@ -1026,9 +1037,6 @@ console.log("Base64 image length:", base64Image.length);
                 image: base64Image
             });
 
-            // Show the latest captured image
-            pictureElement.style.display = 'block';
-            pictureElement.src = capturedImage;
 
             // Flash effect for feedback
             const flash = document.createElement('div');
@@ -1060,6 +1068,10 @@ console.log("Base64 image length:", base64Image.length);
         // Hide the video and keep the last image visible
         videoElement.style.display = 'none';
 
+
+            // Show the latest captured image
+        pictureElement.style.display = 'block';
+         pictureElement.src = capturedImages[0];
         // Show captured actions container
         document.querySelector('.button-container').style.display = 'none';
         document.querySelector('.captured-actions').style.display = 'flex';
@@ -1113,25 +1125,90 @@ function retakePhoto() {
    // Reinitialize the camera
    initCamera();
 }
+    // Function to use the captured photo and send to API
+    async function usePhoto() {
+        // Show loading state
+        const submitButton = document.querySelector('.nin-submit-button') || document.getElementById('submit-button');
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = 'Processing...';
+        }
 
-function usePhoto() {
-   function showResult(isSuccess) {
-       document.getElementById("successContainer").style.display = isSuccess ? "block" : "none";
-       document.getElementById("failedContainer").style.display = isSuccess ? "none" : "block";
-   }
+        try {
+            // Get NIN value from input field (adjust selector as needed)
+            nin = document.getElementById('nin-input').value || nin;
+            // Get note/reason (adjust as needed)
+            note = document.getElementById('note-input')?.value || "account creation";
 
-   // Example usage: Call this function based on the actual verification result.
-   let verificationStatus = true; // or false based on API response
-   loadStep3()
-   showResult(verificationStatus);
+            // Prepare the API request data
+            const requestData = {
+                nin: nin,
+                note: note,
+                images: capturedImages
+            };
 
-}
+            // Log the request data for debugging
+            console.log("Sending verification request:", requestData);
+
+            // Make the API call
+            const response = await fetch(`${config.baseUrl}/integration/enterprise/in-person/create/${config.enterpriseId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'client-id': config.clientId,
+                    'client-secret': config.clientSecret
+                },
+                body: JSON.stringify(requestData)
+            });
+
+            // Process the response
+            const result = await response.json();
+            console.log("API Response:", result);
+
+            // Determine if verification was successful
+            const verificationStatus = response.status === 200 && result.status === "success";
+
+            // Show the result UI
+            loadStep3();
+            showResult(verificationStatus);
+
+            return result;
+        } catch (error) {
+            console.error("Error during verification:", error);
+            loadStep3();
+            showResult(false);
+        } finally {
+            // Reset button state
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Submit';
+            }
+        }
+    }
+
+    function showResult(isSuccess) {
+        document.getElementById("successContainer").style.display = isSuccess ? "block" : "none";
+        document.getElementById("failedContainer").style.display = isSuccess ? "none" : "block";
+    }
+
 
 
 function closewidget() {
     document.querySelector(".nin-auth-overlay").style.display = "none";
     document.querySelector(".nin-auth-modal").style.display = "none";
 }
+
+// Initialize the widget with configuration options
+function initialize(options = {}) {
+    if (options.baseUrl) config.baseUrl = options.baseUrl;
+    if (options.clientId) config.clientId = options.clientId;
+    if (options.clientSecret) config.clientSecret = options.clientSecret;
+    if (options.enterpriseId) config.enterpriseId = options.enterpriseId;
+    if (options.nin) nin = options.nin;
+    if (options.note) note = options.note;
+}
+
+
 
 function ensureModalExists() {
     let overlay = document.querySelector(".nin-auth-overlay");
@@ -1150,16 +1227,30 @@ function ensureModalExists() {
     }
 }
 
-  window.NinAuth = {
-    openModal: function () {
-      ensureModalExists();
-      document.querySelector(".nin-auth-overlay").style.display = "block";
-      document.querySelector(".nin-auth-modal").style.display = "flex";
-      loadStep1();
+ // Expose the NinAuth object to the window
+ window.NinAuth = {
+    openModal: function (options = {}) {
+        // Initialize with options if provided
+        if (Object.keys(options).length > 0) {
+            initialize(options);
+        }
+
+        ensureModalExists();
+        document.querySelector(".nin-auth-overlay").style.display = "block";
+        document.querySelector(".nin-auth-modal").style.display = "flex";
+        loadStep1();
     },
     closeModal: function () {
-      document.querySelector(".nin-auth-overlay").style.display = "none";
-      document.querySelector(".nin-auth-modal").style.display = "none";
+        document.querySelector(".nin-auth-overlay").style.display = "none";
+        document.querySelector(".nin-auth-modal").style.display = "none";
+
+        // Stop any active streams when closing
+        if (stream) {
+            stream.getTracks().forEach(track => track.stop());
+        }
     },
-  };
+    initialize: initialize,
+    usePhoto: usePhoto
+
+};
 })();
