@@ -5,7 +5,7 @@ const consents = [
    "Full Name", "Mobile Number", "Date of Birth"
 ];
     // Array to store captured images
-    const capturedImages = [];
+    let capturedImages = [];
 
 // Initial Step (Load Form)
 function loadStep1() {
@@ -192,8 +192,7 @@ function loadStep1() {
 
 
 // Handle API Call & Go to Next Step
-function submitData(event) {
-
+function submitData() {
    const ninValue = document.getElementById("nin-input").value;
    const reasonValue = document.getElementById("reason-input").value;
 
@@ -970,7 +969,8 @@ async function capturePhoto(count = 8, intervalMs = 1000) {
     const videoElement = document.getElementById('video-preview');
     const pictureElement = document.getElementById('picture-preview');
 
-
+    // Reset the global array before capturing new photos
+    capturedImages = [];
 
     try {
         submitButton.disabled = true;
@@ -1006,7 +1006,7 @@ async function capturePhoto(count = 8, intervalMs = 1000) {
             // Convert data URL to base64 string (remove the prefix)
             const base64Image = capturedImage.split(',')[1];
 
-            // Store the image
+            // Store the image in the global array
             capturedImages.push({
                 image_type: "image_type_2",
                 image: base64Image
@@ -1056,21 +1056,37 @@ async function capturePhoto(count = 8, intervalMs = 1000) {
             stream.getTracks().forEach(track => track.stop());
             videoElement.srcObject = null;
         }
-        // Construct the final object with the images array
 
-
+        // Log the global capturedImages array
         console.log("Captured Images Data:", capturedImages);
-
 
     } catch (error) {
         console.error("Error capturing photos:", error);
-        showError("Failed to capture photos");
+        console.error(message);
+        const notification = document.createElement('div');
+        notification.className = 'notification error';
+        notification.textContent = message;
+        notification.style.position = 'fixed';
+        notification.style.top = '20px';
+        notification.style.right = '20px';
+        notification.style.backgroundColor = '#ff3333';
+        notification.style.color = 'white';
+        notification.style.padding = '10px 20px';
+        notification.style.borderRadius = '5px';
+        notification.style.zIndex = '9999';
+        document.body.appendChild(notification);
+        setTimeout(() => notification.remove(), 3000);
+
+        // Clear the global array on error
+        capturedImages = [];
     } finally {
         submitButton.disabled = false;
         takePhotoIcon.style.display = 'block';
         spinner.style.display = 'none';
     }
 }
+
+
 
 function retakePhoto() {
    document.querySelector('.button-container').style.display = 'flex';
