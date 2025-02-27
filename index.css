@@ -274,6 +274,17 @@
     align-self: stretch;
 
 }
+.header-container p {
+
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 140%;
+text-align: center;
+color: #090E1D;
+flex-grow: 1;
+
+}
 
 .mb-8 {
     margin-bottom: 40px;
@@ -342,14 +353,14 @@ h1 {
 .nin-auth-checkbox {
     display: flex;
     align-items: flex-start;
+    justify-content: start;
     gap: 10px;
 }
 
 .nin-auth-checkbox input {
-    /* margin-top: 4px; */
     accent-color: #00A86B;
-    width: 20px;
-    height: 20px;
+    width: 32px;
+    height: 32px;
 }
 
 .nin-auth-checkbox-label {
