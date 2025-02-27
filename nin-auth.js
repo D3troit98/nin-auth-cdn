@@ -971,7 +971,10 @@ async function capturePhoto(count = 8, intervalMs = 1000) {
 
     // Reset the global array before capturing new photos
     capturedImages = [];
-
+    if (videoElement.readyState < 2) { // 2 = HAVE_CURRENT_DATA
+        console.error("Video not ready for capture.");
+        return;
+    }
     try {
         submitButton.disabled = true;
         takePhotoIcon.style.display = 'none';
@@ -994,7 +997,11 @@ async function capturePhoto(count = 8, intervalMs = 1000) {
         for (let i = 0; i < count; i++) {
             // Update status
             statusDiv.textContent = `Capturing photo ${i + 1} of ${count}...`;
-console.log(`Capturing photo ${i + 1} of ${count}...`)
+            console.log(`Capturing frame ${i + 1}`);
+            console.log("Video stream:", videoElement.srcObject);
+            console.log("Canvas dimensions:", canvas.width, canvas.height);
+            console.log("Captured image:", capturedImage);
+            console.log("Base64 image length:", base64Image.length);
             // Capture the image
             const canvas = document.createElement('canvas');
             const context = canvas.getContext('2d');
