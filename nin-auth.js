@@ -994,7 +994,7 @@ async function capturePhoto(count = 8, intervalMs = 1000) {
         for (let i = 0; i < count; i++) {
             // Update status
             statusDiv.textContent = `Capturing photo ${i + 1} of ${count}...`;
-
+console.log(`Capturing photo ${i + 1} of ${count}...`)
             // Capture the image
             const canvas = document.createElement('canvas');
             const context = canvas.getContext('2d');
