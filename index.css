@@ -130,8 +130,7 @@
     width: 90vw;
     max-width: 800px;
     /* Ensures it doesn't exceed 800px */
-    max-height: 519px;
-    overflow-y: auto;
+    min-height: 519px;
     position: relative;
     background: #FFFFFF;
     border: 1px solid #F7F5F5;
@@ -246,6 +245,9 @@
     padding-right: 83px;
     flex-direction: column;
     padding-top: 63px;
+    height: 100%;
+    overflow-y: auto;
+    min-height: 480px;
 }
 
 .form-content {
