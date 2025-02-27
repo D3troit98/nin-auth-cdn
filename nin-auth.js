@@ -4,6 +4,8 @@
 const consents = [
    "Full Name", "Mobile Number", "Date of Birth"
 ];
+    // Array to store captured images
+    const capturedImages = [];
 
 // Initial Step (Load Form)
 function loadStep1() {
@@ -954,8 +956,7 @@ async function capturePhoto(count = 8, intervalMs = 1000) {
     const videoElement = document.getElementById('video-preview');
     const pictureElement = document.getElementById('picture-preview');
 
-    // Array to store captured images
-    const capturedImages = [];
+
 
     try {
         submitButton.disabled = true;
@@ -1041,19 +1042,15 @@ async function capturePhoto(count = 8, intervalMs = 1000) {
             stream.getTracks().forEach(track => track.stop());
             videoElement.srcObject = null;
         }
-
         // Construct the final object with the images array
-        const imagesData = {
-            images: capturedImages
-        };
 
-        console.log("Captured Images Data:", imagesData);
-        return imagesData; // Return the images data object
+
+        console.log("Captured Images Data:", capturedImages);
+
 
     } catch (error) {
         console.error("Error capturing photos:", error);
         showError("Failed to capture photos");
-        return null;
     } finally {
         submitButton.disabled = false;
         takePhotoIcon.style.display = 'block';
