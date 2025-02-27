@@ -209,9 +209,6 @@ function submitData() {
 
   nin = ninValue
   note = reasonValue
-
-   // You can now store this data or send it to your backend
-   console.log("Data to be stored:", dataToStore);
    loadStep2(); // Assuming this is the next step in your flow
 }
 
