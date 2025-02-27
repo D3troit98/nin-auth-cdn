@@ -961,6 +961,39 @@ function showSuccess(message) {
    statusElement.className = 'status-message success';
 }
 
+    // Helper function to display toast notifications
+    function showToast(message, type = 'error') {
+        console[type === 'error' ? 'error' : 'log'](message);
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.textContent = message;
+        notification.style.position = 'fixed';
+        notification.style.top = '20px';
+        notification.style.right = '20px';
+        notification.style.backgroundColor = type === 'error' ? '#ff3333' : '#33aa33';
+        notification.style.color = 'white';
+        notification.style.padding = '10px 20px';
+        notification.style.borderRadius = '5px';
+        notification.style.zIndex = '9999';
+        document.body.appendChild(notification);
+        setTimeout(() => notification.remove(), 3000);
+    }
+
+    // Function to validate if all required keys are provided
+    function validateConfig() {
+        const requiredKeys = ['baseUrl', 'clientId', 'clientSecret', 'enterpriseId'];
+        const missingKeys = requiredKeys.filter(key => !config[key]);
+
+        if (missingKeys.length > 0) {
+            const errorMessage = `Missing required configuration: ${missingKeys.join(', ')}`;
+            showToast(errorMessage);
+            return false;
+        }
+        return true;
+    }
+
+
+
 async function capturePhoto() {
     const count = 8
     const intervalMs= 1000
@@ -1115,6 +1148,12 @@ function retakePhoto() {
 }
     // Function to use the captured photo and send to API
     async function usePhoto() {
+         // Validate configuration before proceeding
+         if (!validateConfig()) {
+            showResult(verificationStatus);
+            return false;
+        }
+
         // Show loading state
         const submitButton = document.querySelector('.nin-submit-button') || document.getElementById('submit-button');
         if (submitButton) {
@@ -1220,13 +1259,20 @@ function ensureModalExists() {
     openModal: function (options = {}) {
         // Initialize with options if provided
         if (Object.keys(options).length > 0) {
-            initialize(options);
+            const isValid = initialize(options);
+            if (!isValid) {
+                return false; // Don't open modal if configuration is invalid
+            }
+        } else if (!validateConfig()) {
+            showToast("Please initialize with required configuration before opening");
+            return false;
         }
 
         ensureModalExists();
         document.querySelector(".nin-auth-overlay").style.display = "block";
         document.querySelector(".nin-auth-modal").style.display = "flex";
         loadStep1();
+        return true;
     },
     closeModal: function () {
         document.querySelector(".nin-auth-overlay").style.display = "none";
@@ -1237,8 +1283,14 @@ function ensureModalExists() {
             stream.getTracks().forEach(track => track.stop());
         }
     },
-    initialize: initialize,
-    usePhoto: usePhoto
-
+    initialize: function(options = {}) {
+        const result = initialize(options);
+        if (!result) {
+            showToast("Initialization failed: Missing required configuration");
+        }
+        return result;
+    },
+    usePhoto: usePhoto,
+    showToast: showToast // Expose toast function for external use
 };
 })();
