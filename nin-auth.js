@@ -964,7 +964,7 @@ function showSuccess(message) {
 
 async function capturePhoto() {
     const count = 8
-    const intervalMs= 10000
+    const intervalMs= 1000
     const submitButton = document.querySelector('.nin-auth-submit');
     const takePhotoIcon = document.querySelector('.take-photo-icon');
     const spinner = document.querySelector('.spinner');
