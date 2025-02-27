@@ -128,7 +128,7 @@
 .nin-auth-modal {
     /* Container */
     width: 90vw;
-    max-width: 800px;
+    max-width: 744px;
     /* Ensures it doesn't exceed 800px */
     min-height: 519px;
     position: relative;
@@ -241,10 +241,10 @@
     /* Frame 1171276854 */
     display: flex;
     align-items: center;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 55px;
+    padding-right: 55px;
     flex-direction: column;
-    padding-top: 30px;
+    padding-top: 60px;
     max-height: 500px;
     overflow-y: auto;
     height: 100%;
