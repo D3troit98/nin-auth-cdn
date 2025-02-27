@@ -1071,7 +1071,6 @@ async function capturePhoto() {
 
     } catch (error) {
         console.error("Error capturing photos:", error);
-        console.error(message);
         const notification = document.createElement('div');
         notification.className = 'notification error';
         notification.textContent = message;
