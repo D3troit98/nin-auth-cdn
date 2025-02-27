@@ -207,17 +207,8 @@ function submitData() {
    const ninValue = document.getElementById("nin-input").value;
    const reasonValue = document.getElementById("reason-input").value;
 
-   // Create the data object structure
-   const dataToStore = {
-       "nin": ninValue,
-       "note": reasonValue,
-       "images": capturedImages.length > 0 ? capturedImages : [
-           {
-               "image_type": "image_type_2",
-               "image": "base64" // This would be replaced with actual base64 image data when available
-           }
-       ]
-   };
+  nin = ninValue
+  note = reasonValue
 
    // You can now store this data or send it to your backend
    console.log("Data to be stored:", dataToStore);
