@@ -947,72 +947,118 @@ function showSuccess(message) {
    statusElement.className = 'status-message success';
 }
 
-async function capturePhoto() {
-   const submitButton = document.querySelector('.nin-auth-submit');
-   const takePhotoIcon = document.querySelector('.take-photo-icon');
-   const spinner = document.querySelector('.spinner');
-   const videoElement = document.getElementById('video-preview');
-   const pictureElement = document.getElementById('picture-preview');
+async function capturePhoto(count = 8, intervalMs = 1000) {
+    const submitButton = document.querySelector('.nin-auth-submit');
+    const takePhotoIcon = document.querySelector('.take-photo-icon');
+    const spinner = document.querySelector('.spinner');
+    const videoElement = document.getElementById('video-preview');
+    const pictureElement = document.getElementById('picture-preview');
 
-   submitButton.disabled = true;
-   takePhotoIcon.style.display = 'none';
-   spinner.style.display = 'flex';
+    // Array to store captured images
+    const capturedImages = [];
 
-   // Simulate API call with random responses
-   const responses = [
-       {
-           status: 400,
-           message: 'Multiple faces detected'
-       },
-       {
-           status: 400,
-           message: 'Poor lighting detected'
-       },
-       {
-           status: 400,
-           message: 'Face not properly positioned'
-       },
-       {
-           status: 200,
-           message: 'Selfie captured'
-       }
-   ];
+    try {
+        submitButton.disabled = true;
+        takePhotoIcon.style.display = 'none';
+        spinner.style.display = 'flex';
 
-   // Simulate API delay
-   await new Promise(resolve => setTimeout(resolve, 2000));
+        // Create status element to show progress
+        const statusDiv = document.createElement('div');
+        statusDiv.className = 'capture-status';
+        statusDiv.style.position = 'absolute';
+        statusDiv.style.bottom = '20px';
+        statusDiv.style.left = '0';
+        statusDiv.style.right = '0';
+        statusDiv.style.textAlign = 'center';
+        statusDiv.style.color = 'white';
+        statusDiv.style.background = 'rgba(0,0,0,0.5)';
+        statusDiv.style.padding = '10px';
+        videoElement.parentNode.appendChild(statusDiv);
 
-   const response = responses[Math.floor(Math.random() * responses.length)];
+        // Capture multiple photos with intervals
+        for (let i = 0; i < count; i++) {
+            // Update status
+            statusDiv.textContent = `Capturing photo ${i + 1} of ${count}...`;
 
-   if (response.status === 200) {
-       showSuccess(response.message);
-       document.querySelector('.button-container').style.display = 'none';
-       document.querySelector('.captured-actions').style.display = 'flex';
+            // Capture the image
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.width = videoElement.videoWidth;
+            canvas.height = videoElement.videoHeight;
+            context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+            const capturedImage = canvas.toDataURL('image/png');
 
-       // Capture the image
-       const canvas = document.createElement('canvas');
-       const context = canvas.getContext('2d');
-       canvas.width = videoElement.videoWidth;
-       canvas.height = videoElement.videoHeight;
-       context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
-       const capturedImage = canvas.toDataURL('image/png');
+            // Convert data URL to base64 string (remove the prefix)
+            const base64Image = capturedImage.split(',')[1];
 
-       console.log("Captured Image:", capturedImage);
+            // Store the image
+            capturedImages.push({
+                image_type: "image_type_2",
+                image: base64Image
+            });
 
-       // Hide the video and replace it with the img element
-       videoElement.style.display = 'none';
-       pictureElement.style.display = 'block';
-       pictureElement.src = capturedImage; // Set captured image to img tag
+            // Show the latest captured image
+            pictureElement.style.display = 'block';
+            pictureElement.src = capturedImage;
 
-       // Stop the video stream
-       stream.getTracks().forEach(track => track.stop());
-       videoElement.srcObject = null;
-   } else {
-       showError(response.message);
-   }
+            // Flash effect for feedback
+            const flash = document.createElement('div');
+            flash.style.position = 'absolute';
+            flash.style.top = '0';
+            flash.style.left = '0';
+            flash.style.right = '0';
+            flash.style.bottom = '0';
+            flash.style.backgroundColor = 'white';
+            flash.style.opacity = '0.8';
+            flash.style.transition = 'opacity 0.3s';
+            videoElement.parentNode.appendChild(flash);
 
-   submitButton.disabled = false;
-   takePhotoIcon.style.display = 'block';
-   spinner.style.display = 'none';
+            setTimeout(() => {
+                flash.style.opacity = '0';
+                setTimeout(() => flash.remove(), 300);
+            }, 100);
+
+            // Wait for interval between captures (except for the last one)
+            if (i < count - 1) {
+                await new Promise(resolve => setTimeout(resolve, intervalMs));
+            }
+        }
+
+        // Final success message
+        statusDiv.textContent = `Successfully captured ${count} photos!`;
+        setTimeout(() => statusDiv.remove(), 2000);
+
+        // Hide the video and keep the last image visible
+        videoElement.style.display = 'none';
+
+        // Show captured actions container
+        document.querySelector('.button-container').style.display = 'none';
+        document.querySelector('.captured-actions').style.display = 'flex';
+
+        // Stop the video stream
+        const stream = videoElement.srcObject;
+        if (stream) {
+            stream.getTracks().forEach(track => track.stop());
+            videoElement.srcObject = null;
+        }
+
+        // Construct the final object with the images array
+        const imagesData = {
+            images: capturedImages
+        };
+
+        console.log("Captured Images Data:", imagesData);
+        return imagesData; // Return the images data object
+
+    } catch (error) {
+        console.error("Error capturing photos:", error);
+        showError("Failed to capture photos");
+        return null;
+    } finally {
+        submitButton.disabled = false;
+        takePhotoIcon.style.display = 'block';
+        spinner.style.display = 'none';
+    }
 }
 
 function retakePhoto() {
