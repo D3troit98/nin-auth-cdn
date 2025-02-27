@@ -130,7 +130,8 @@
     width: 90vw;
     max-width: 800px;
     /* Ensures it doesn't exceed 800px */
-    min-height: 519px;
+    max-height: 519px;
+    overflow-y: auto;
     position: relative;
     background: #FFFFFF;
     border: 1px solid #F7F5F5;
