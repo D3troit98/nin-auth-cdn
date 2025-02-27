@@ -241,10 +241,10 @@
     /* Frame 1171276854 */
     display: flex;
     align-items: center;
-    padding-left: 83px;
-    padding-right: 83px;
+    padding-left: 40px;
+    padding-right: 40px;
     flex-direction: column;
-    padding-top: 63px;
+    padding-top: 30px;
     max-height: 500px;
     overflow-y: auto;
     height: 100%;
