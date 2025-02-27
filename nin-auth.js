@@ -1058,7 +1058,7 @@ console.log(`Capturing photo ${i + 1} of ${count}...`)
         }
 
         // Log the global capturedImages array
-        console.log("Captured Images Data:", capturedImages);
+        console.log("Captured Images Data v2:", capturedImages);
 
     } catch (error) {
         console.error("Error capturing photos:", error);
