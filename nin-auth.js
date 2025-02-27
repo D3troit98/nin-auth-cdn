@@ -998,22 +998,27 @@ async function capturePhoto() {
         // Capture multiple photos with intervals
         for (let i = 0; i < count; i++) {
             // Update status
-            statusDiv.textContent = `Capturing photo ${i + 1} of ${count}...`;
-            console.log(`Capturing frame ${i + 1}`);
-            console.log("Video stream:", videoElement.srcObject);
-            console.log("Canvas dimensions:", canvas.width, canvas.height);
-            console.log("Captured image:", capturedImage);
-            console.log("Base64 image length:", base64Image.length);
-            // Capture the image
-            const canvas = document.createElement('canvas');
-            const context = canvas.getContext('2d');
-            canvas.width = videoElement.videoWidth;
-            canvas.height = videoElement.videoHeight;
-            context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
-            const capturedImage = canvas.toDataURL('image/png');
+            // Update status
+statusDiv.textContent = `Capturing photo ${i + 1} of ${count}...`;
+console.log(`Capturing frame ${i + 1}`);
+console.log("Video stream:", videoElement.srcObject);
 
-            // Convert data URL to base64 string (remove the prefix)
-            const base64Image = capturedImage.split(',')[1];
+// Capture the image
+const canvas = document.createElement('canvas');
+const context = canvas.getContext('2d');
+canvas.width = videoElement.videoWidth;
+canvas.height = videoElement.videoHeight;
+context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+const capturedImage = canvas.toDataURL('image/png');
+
+// Convert data URL to base64 string (remove the prefix)
+const base64Image = capturedImage.split(',')[1];
+
+// Now log information after variables are created
+console.log("Canvas dimensions:", canvas.width, canvas.height);
+console.log("Captured image:", capturedImage);
+console.log("Base64 image length:", base64Image.length);
+
 
             // Store the image in the global array
             capturedImages.push({
