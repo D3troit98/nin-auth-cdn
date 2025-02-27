@@ -193,15 +193,7 @@ function loadStep1() {
 
 // Handle API Call & Go to Next Step
 function submitData(event) {
-   event.preventDefault(); // Prevents form from actually submitting
 
-   let userInput = document.getElementById('nin-consent').checked;
-
-   if (!userInput) {
-       alert("You must give consent before submitting!");
-       return;
-   }
-   loadStep2(); // Assuming this is the next step in your flow
    const ninValue = document.getElementById("nin-input").value;
    const reasonValue = document.getElementById("reason-input").value;
 
@@ -219,7 +211,7 @@ function submitData(event) {
 
    // You can now store this data or send it to your backend
    console.log("Data to be stored:", dataToStore);
-
+   loadStep2(); // Assuming this is the next step in your flow
 }
 
 
