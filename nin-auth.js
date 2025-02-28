@@ -538,6 +538,8 @@ function loadStep2() {
                     <img id="picture-preview">
                     <div class="camera-overlay">
                     </div>
+                     <div class="camera-overlay_spinner">
+                    </div>
                 </div>
                    <div class="status-message">
                 </div>
@@ -1018,7 +1020,6 @@ function showSuccess(message) {
 async function capturePhoto() {
     const count = 8
     const intervalMs= 1000
-    const overlay = document.querySelector('.camera-overlay');
     const submitButton = document.querySelector('.nin-auth-submit');
     const takePhotoIcon = document.querySelector('.take-photo-icon');
     const spinner = document.querySelector('.spinner');
@@ -1027,9 +1028,6 @@ async function capturePhoto() {
 
     // Reset the global array before capturing new photos
     capturedImages = [];
-     // Reset overlay progress
-     overlay.style.opacity = '1';
-     overlay.style.setProperty('--progress', '0%');
     if (videoElement.readyState < 2) { // 2 = HAVE_CURRENT_DATA
         console.error("Video not ready for capture.");
         return;
@@ -1054,12 +1052,7 @@ async function capturePhoto() {
 
         // Capture multiple photos with intervals
         for (let i = 0; i < count; i++) {
-             // Calculate the progress as a percentage
-        let progress = ((i + 1) / count) * 100;
-        overlay.style.setProperty('--progress', `${progress}%`);
-
-        // Change part of the ring to #19C586
-        overlay.style.setProperty('--ring-color', '#19C586');
+            // Update status
             // Update status
 statusDiv.textContent = `Capturing photo ${i + 1} of ${count}...`;
 if(i %2 === 0) {
@@ -1118,10 +1111,6 @@ console.log("Base64 image length:", base64Image.length);
         // Final success message
         statusDiv.textContent = `Successfully captured ${count} photos!`;
         setTimeout(() => statusDiv.remove(), 2000);
-        // Hide the overlay after capturing
-    setTimeout(() => {
-        overlay.style.opacity = '0';
-    }, 500);
 
         // Hide the video and keep the last image visible
         videoElement.style.display = 'none';
