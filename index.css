@@ -476,17 +476,33 @@ gap: 8px;
     pointer-events: none;
 }
 
-.camera-overlay_spinner {
+.camera-overlay-spinner-container {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    border: 6px solid #19C586;
-    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     pointer-events: none;
-    animation: spin 1s linear infinite;
-    z-index: 100;
+}
+
+.camera-overlay-spinner {
+    position: absolute;
+    width: 100px; /* Adjust size */
+    height: 100px;
+}
+
+.camera-overlay-spinner circle {
+    fill: none;
+    stroke: #19C586;
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-dasharray: 314; /* Full circle circumference (approx 2πr for r=50) */
+    stroke-dashoffset: 314; /* Start hidden */
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
 }
 
 .spinner {
