@@ -123,6 +123,14 @@
     padding: 0;
 }
 
+.notification{
+    font-family: "Plus Jakarta Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
 
 
 .nin-auth-modal {

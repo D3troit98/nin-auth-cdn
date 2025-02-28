@@ -795,7 +795,7 @@ function loadStep1() {
     document.getElementById("nin-auth-form").addEventListener("submit", function (event) {
         event.preventDefault();
         if (ninInput.value.length !== 11) {
-            showError("NIN must be exactly 11 digits!");
+            showToast("NIN must be exactly 11 digits!");
             return false;
         }
         submitData();
@@ -928,7 +928,7 @@ async function initCamera() {
        console.error("Camera access denied: ", error);
        const submitButton = document.querySelector('.nin-auth-submit');
        submitButton.disabled = true;
-       showError('Camera access denied.');
+       showToast('Camera access denied.');
    }
 }
 
@@ -1134,20 +1134,7 @@ console.log("Base64 image length:", base64Image.length);
 
     } catch (error) {
         console.error("Error capturing photos:", error);
-        const notification = document.createElement('div');
-        notification.className = 'notification error';
-        notification.textContent = error?.message || "Error capturing photos";
-        notification.style.position = 'fixed';
-        notification.style.top = '20px';
-        notification.style.right = '20px';
-        notification.style.backgroundColor = '#ff3333';
-        notification.style.color = 'white';
-        notification.style.padding = '10px 20px';
-        notification.style.borderRadius = '5px';
-        notification.style.zIndex = '9999';
-        document.body.appendChild(notification);
-        setTimeout(() => notification.remove(), 3000);
-
+        showToast(error?.message || "Error capturing photos")
         // Clear the global array on error
         capturedImages = [];
     } finally {
@@ -1218,12 +1205,14 @@ function retakePhoto() {
             const verificationStatus = response.status === 200 && result.status === "success";
 
             // Show the result UI
+            if(verificationStatus) showToast("Verification successful", "success")
             loadStep3();
             showResult(verificationStatus);
 
             return result;
         } catch (error) {
             console.error("Error during verification:", error);
+            showToast(`Error during verification: ${error}`)
             loadStep3();
             showResult(false);
         } finally {
@@ -1316,6 +1305,8 @@ function ensureModalExists() {
 
         if (!result) {
             showToast("Initialization failed: Missing required configuration");
+        }else {
+            showToast("Initialization successful with version 2.0.1", "success")
         }
         return result;
     },
