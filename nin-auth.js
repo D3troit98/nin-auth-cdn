@@ -611,11 +611,11 @@ function loadStep2() {
 
 // Handle API Call & Go to Next Step
 function submitData() {
-    const ninValue = document.getElementById("nin-input").value;
-    const reasonValue = document.getElementById("reason-input").value;
+    const ninValue = document.getElementById("nin-input")?.value || "";
+    const reasonValue = document.getElementById("reason-input")?.value || "";
 
-   nin = ninValue
-   note = reasonValue
+    nin = ninValue
+    note = reasonValue
    loadStep2(); // Assuming this is the next step in your flow
  }
 
@@ -783,7 +783,6 @@ function loadStep1() {
       closewidget();
     });
 
-    document.getElementById("nin-auth-form").addEventListener("submit", submitData);
     let ninInput = document.querySelector("#nin-input");
 
     ninInput.addEventListener("input", function (e) {
@@ -796,7 +795,7 @@ function loadStep1() {
     document.getElementById("nin-auth-form").addEventListener("submit", function (event) {
         event.preventDefault();
         if (ninInput.value.length !== 11) {
-            alert("NIN must be exactly 11 digits!");
+            showError("NIN must be exactly 11 digits!");
             return false;
         }
         submitData();
