@@ -1032,6 +1032,9 @@ async function capturePhoto() {
             // Update status
             // Update status
 statusDiv.textContent = `Capturing photo ${i + 1} of ${count}...`;
+if(i %2 === 0) {
+    statusDiv.textContent  = "Smile"
+}
 console.log(`Capturing frame ${i + 1}`);
 console.log("Video stream:", videoElement.srcObject);
 
@@ -1176,7 +1179,7 @@ function retakePhoto() {
 
             // Log the request data for debugging
             console.log("Sending verification request:", requestData);
-
+            console.log("config", config)
             // Make the API call
             const response = await fetch(`${config.baseUrl}/integration/enterprise/in-person/create/${config.enterpriseId}`, {
                 method: 'POST',
@@ -1233,6 +1236,11 @@ function initialize(options = {}) {
     if (options.enterpriseId) config.enterpriseId = options.enterpriseId;
     if (options.nin) nin = options.nin;
     if (options.note) note = options.note;
+    if(!options.clientId || !options.clientSecret || !options.enterpriseId){
+        return false
+    }else{
+        return  true
+    }
 }
 
 
