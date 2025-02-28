@@ -1284,7 +1284,9 @@ function ensureModalExists() {
         }
     },
     initialize: function(options = {}) {
+        console.log('options',options)
         const result = initialize(options);
+
         if (!result) {
             showToast("Initialization failed: Missing required configuration");
         }
