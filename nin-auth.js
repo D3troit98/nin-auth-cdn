@@ -431,7 +431,9 @@ function loadStep2() {
                 </clipPath>
             </defs>
         </svg>
- <div class="nin-auth-steps">
+
+    </button>
+    <div class="nin-auth-steps">
         <svg width="118" height="32" viewBox="0 0 118 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
                 d="M27.8848 21.9748V3.80762H31.016L39.1877 17.1735V3.80762H42.0388V21.9748H38.9076L30.7106 8.63495V21.9748H27.8848Z"
@@ -444,9 +446,7 @@ function loadStep2() {
                 d="M79.1135 21.9748L77.5351 17.6925H70.2036L68.6252 21.9748H65.5449L72.4692 3.80762H75.244L82.1938 21.9748H79.1135ZM71.171 15.0713H76.5678L73.8694 7.80435L71.171 15.0713Z"
                 fill="#0A1E29" />
             <path
-                d="M94.4834 8.89453V21.9749H91.7086V19.7949C91.2673 20.5216 90.6818 21.1012 89.9521 21.5337C89.2223 21.9663 88.4077 22.1825 87.5083 22.1825C86.1166 22.1825 84.9923 21.7544 84.1352 20.8979C83.2782 20.0415 82.8496 18.9125 82.8496 17.5111V8.8946H85.6244V16.8622C85.624
-    </button>
-   4 17.6927 85.862 18.3632 86.3372 18.8735C86.8124 19.384 87.4573 19.6392 88.2719 19.6392C89.3411 19.6392 90.1812 19.198 90.7921 18.3156C91.4031 17.4331 91.7086 16.2047 91.7086 14.6303V8.8946H94.4834V8.89453Z"
+                d="M94.4834 8.89453V21.9749H91.7086V19.7949C91.2673 20.5216 90.6818 21.1012 89.9521 21.5337C89.2223 21.9663 88.4077 22.1825 87.5083 22.1825C86.1166 22.1825 84.9923 21.7544 84.1352 20.8979C83.2782 20.0415 82.8496 18.9125 82.8496 17.5111V8.8946H85.6244V16.8622C85.6244 17.6927 85.862 18.3632 86.3372 18.8735C86.8124 19.384 87.4573 19.6392 88.2719 19.6392C89.3411 19.6392 90.1812 19.198 90.7921 18.3156C91.4031 17.4331 91.7086 16.2047 91.7086 14.6303V8.8946H94.4834V8.89453Z"
                 fill="#0A1E29" />
             <path
                 d="M104.178 21.8705C103.567 22.0781 102.889 22.1819 102.142 22.1819C100.869 22.1819 99.8464 21.8186 99.0743 21.0919C98.3021 20.3652 97.916 19.2838 97.916 17.8478V11.3075H95.6758V8.89388H97.916V5.00098H100.691V8.89388H104V11.3075H100.691V17.692C100.691 18.3322 100.848 18.8209 101.162 19.1583C101.476 19.4958 101.904 19.6644 102.447 19.6644C103.058 19.6644 103.576 19.5606 104 19.353L104.178 21.8704L104.178 21.8705Z"
@@ -795,7 +795,7 @@ function loadStep1() {
     document.getElementById("nin-auth-form").addEventListener("submit", function (event) {
         event.preventDefault();
         if (ninInput.value.length !== 11) {
-            showToast("NIN must be exactly 11 digits!");
+            showError("NIN must be exactly 11 digits!");
             return false;
         }
         submitData();
@@ -928,37 +928,37 @@ async function initCamera() {
        console.error("Camera access denied: ", error);
        const submitButton = document.querySelector('.nin-auth-submit');
        submitButton.disabled = true;
-       showToast('Camera access denied.');
+       showError('Camera access denied.');
    }
 }
 
-// function showError(message) {
-//    const statusElement = document.querySelector('.status-message');
-//    statusElement.innerHTML = `
-// <div class="status-content">
-//    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-//        <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM11 11V17H13V11H11ZM11 7V9H13V7H11Z" fill="#F29419"/>
-//    </svg>
-//    <span>${message}</span>
-// </div>
-// `;
-//    statusElement.style.display = 'block';
-//    statusElement.className = 'status-message error';
-// }
+function showError(message) {
+   const statusElement = document.querySelector('.status-message');
+   statusElement.innerHTML = `
+<div class="status-content">
+   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+       <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM11 11V17H13V11H11ZM11 7V9H13V7H11Z" fill="#F29419"/>
+   </svg>
+   <span>${message}</span>
+</div>
+`;
+   statusElement.style.display = 'block';
+   statusElement.className = 'status-message error';
+}
 
-// function showSuccess(message) {
-//    const statusElement = document.querySelector('.status-message');
-//    statusElement.innerHTML = `
-// <div class="status-content">
-//    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-//        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM17.4571 9.45711L11 15.9142L6.79289 11.7071L8.20711 10.2929L11 13.0858L16.0429 8.04289L17.4571 9.45711Z" fill="#008738"/>
-//    </svg>
-//    <span>${message}</span>
-// </div>
-// `;
-//    statusElement.style.display = 'block';
-//    statusElement.className = 'status-message success';
-// }
+function showSuccess(message) {
+   const statusElement = document.querySelector('.status-message');
+   statusElement.innerHTML = `
+<div class="status-content">
+   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+       <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM17.4571 9.45711L11 15.9142L6.79289 11.7071L8.20711 10.2929L11 13.0858L16.0429 8.04289L17.4571 9.45711Z" fill="#008738"/>
+   </svg>
+   <span>${message}</span>
+</div>
+`;
+   statusElement.style.display = 'block';
+   statusElement.className = 'status-message success';
+}
 
     // Helper function to display toast notifications
     function showToast(message, type = 'error') {
@@ -991,7 +991,8 @@ async function initCamera() {
         return true;
     }
 
-     const getImageSource = (photoData) => {
+
+    const getImageSource = (photoData) => {
         if (!photoData) {
           return "";
         }
@@ -1014,8 +1015,6 @@ async function initCamera() {
           return "";
         }
       };
-
-
 
 async function capturePhoto() {
     const count = 8
@@ -1182,7 +1181,7 @@ function retakePhoto() {
         }
 
         // Show loading state
-        const submitButton =  document.getElementById('use-photo-button');
+        const submitButton = document.getElementById('use-photo-button');
         if (submitButton) {
             submitButton.disabled = true;
             submitButton.textContent = 'Processing...';
@@ -1220,12 +1219,11 @@ function retakePhoto() {
 
             // Show the result UI
             loadStep3();
-            showToast(result?.data?.message || "Verification successful","success")
             showResult(verificationStatus);
+
             return result;
         } catch (error) {
             console.error("Error during verification:", error);
-            showToast(`Error during verification: ${error.message}`)
             loadStep3();
             showResult(false);
         } finally {
