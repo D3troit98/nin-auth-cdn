@@ -1150,6 +1150,7 @@ function retakePhoto() {
 }
     // Function to use the captured photo and send to API
     async function usePhoto() {
+        console.log("using photo")
          // Validate configuration before proceeding
          if (!validateConfig()) {
             showResult(verificationStatus);
@@ -1164,12 +1165,8 @@ function retakePhoto() {
         }
 
         try {
-            // Get NIN value from input field (adjust selector as needed)
-            nin = document.getElementById('nin-input').value || nin;
-            // Get note/reason (adjust as needed)
-            note = document.getElementById('note-input')?.value || "account creation";
 
-            // Prepare the API request data
+          // Prepare the API request data
             const requestData = {
                 nin: nin,
                 note: note,
