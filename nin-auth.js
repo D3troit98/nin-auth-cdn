@@ -1094,7 +1094,7 @@ console.log("Base64 image length:", base64Image.length);
 
             // Show the latest captured image
         pictureElement.style.display = 'block';
-         pictureElement.src = capturedImages[capturedImages.length -1];
+        pictureElement.src = capturedImages[capturedImages.length -1].image;
         // Show captured actions container
         document.querySelector('.button-container').style.display = 'none';
         document.querySelector('.captured-actions').style.display = 'flex';
