@@ -1025,6 +1025,7 @@ function showSuccess(message) {
         const videoElement = document.getElementById('video-preview');
         const pictureElement = document.getElementById('picture-preview');
         const cameraOverlay = document.querySelector('.camera-overlay');
+        const camerContainer = document.querySelector('.camera-container');
 
         // Add SVG progress ring to camera overlay if it doesn't exist
         if (!document.querySelector('.progress-ring')) {
@@ -1040,7 +1041,7 @@ function showSuccess(message) {
             circle.setAttribute("r", "100"); // Slightly less than half to account for stroke width
 
             progressRing.appendChild(circle);
-            cameraOverlay.appendChild(progressRing);
+            camerContainer.appendChild(progressRing);
         }
 
         // Get the progress ring circle
