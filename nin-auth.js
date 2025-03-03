@@ -1033,7 +1033,7 @@ function showSuccess(message) {
             const progressRing = document.createElementNS(svgNS, "svg");
             progressRing.setAttribute("class", "progress-ring");
             // Set viewBox to match the camera container dimensions
-            progressRing.setAttribute("viewBox", "0 0 212 289");
+            progressRing.setAttribute("viewBox", "0 0 289 212");
             // Make the SVG fill the container
             progressRing.style.position = "absolute";
             progressRing.style.top = "0";
@@ -1042,8 +1042,8 @@ function showSuccess(message) {
             progressRing.style.height = "100%";
 
             // Calculate the center coordinates based on the container dimensions
-            const centerX = 212 / 2;
-            const centerY = 289 / 2;
+            const centerX = 289 / 2;
+            const centerY = 212 / 2;
 
             // Calculate the radius (use the smaller of width/height to ensure it fits)
             const radius = Math.min(centerX, centerY) - 10; // 10px padding
@@ -1073,7 +1073,7 @@ function showSuccess(message) {
                     }
                     .progress-ring-circle {
                         fill: transparent;
-                        stroke: #4CAF50;
+                        stroke: #19C586;
                         stroke-width: 5;
                         stroke-linecap: round;
                         transform: rotate(-90deg);
