@@ -477,8 +477,15 @@ gap: 8px;
     transition: border-color 0.5s ease;
 }
 
-.camera-overlay.progress {
-    border-color: #19C586;
+.camera-overlay::before {
+    content: "";
+    position: absolute;
+    inset: -6px; /* Adjust based on your border width */
+    border-radius: 50%;
+    background: conic-gradient(#19C586 0%, #CDC7C7 0%);
+    mask: radial-gradient(circle, transparent 60%, black 61%);
+    -webkit-mask: radial-gradient(circle, transparent 60%, black 61%);
+    transition: background 0.5s ease;
 }
 
 .spinner {
