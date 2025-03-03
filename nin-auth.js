@@ -315,7 +315,7 @@ function loadStep3() {
                     <button id="consentScreen"  type="submit" class="nin-auth-submit">Continue
                     </button>
 
-                    <button  id="loadStep2" click="loadStep2()" class="back-button">
+                    <button  id="loadStep2g" click="loadStep2()" class="back-button">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path d="M15 6L9 12L15 18" stroke="#00A86B" stroke-width="2" stroke-linecap="round"
@@ -380,7 +380,7 @@ function loadStep3() {
 
                     </button>
 
-                    <button  id="loadStep2" click="loadStep2()" class="back-button">
+                    <button  id="loadStep2b" click="loadStep2()" class="back-button">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path d="M15 6L9 12L15 18" stroke="#00A86B" stroke-width="2" stroke-linecap="round"
@@ -407,7 +407,8 @@ function loadStep3() {
  //    document.getElementById("consentScreen").addEventListener("click", consentScreen);
     document.getElementById("consentScreen").addEventListener("click", loadThankyou);
     document.getElementById("loadStep1").addEventListener("click", loadStep1);
-    document.getElementById("loadStep2").addEventListener("click", loadStep2);
+    document.getElementById("loadStep2g").addEventListener("click", loadStep2);
+    document.getElementById("loadStep2b").addEventListener("click", loadStep2);
     document.getElementById("nin-auth-close").addEventListener("click", ()=>{
      closewidget()
    });
@@ -1060,8 +1061,8 @@ function showSuccess(message) {
 
                 // Update progress indicator
                 const progress = ((i + 1) / count) * 100;
-                cameraOverlay.style.borderColor = `linear-gradient(to right, #19C586 ${progress}%, #CDC7C7 ${progress}%) 1`;
-                // cameraOverlay.style.borderImage = `linear-gradient(to right, #19C586 ${progress}%, #CDC7C7 ${progress}%) 1`;
+                cameraOverlay.style.borderColor = `#19C586`;
+                cameraOverlay.style.borderImage = `linear-gradient(to right, #19C586 ${progress}%, #CDC7C7 ${progress}%) 1`;
 
                 // Capture the image
                 const canvas = document.createElement('canvas');
@@ -1177,7 +1178,7 @@ function retakePhoto() {
             const requestData = {
                 nin: nin,
                 note: note,
-                images: capturedImages[0]
+                images: capturedImages
             };
 
             // Log the request data for debugging
