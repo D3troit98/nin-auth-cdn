@@ -1053,7 +1053,7 @@ function showSuccess(message) {
             // Capture multiple photos with intervals
             for (let i = 0; i < count; i++) {
                 // Update status
-                statusDiv.textContent = `Capturing photo ${i + 1} of ${count}...`;
+                // statusDiv.textContent = `Capturing photo ${i + 1} of ${count}...`;
                 if (i % 2 === 0) {
                     statusDiv.textContent = "Smile";
                 }
@@ -1061,7 +1061,7 @@ function showSuccess(message) {
                 // Update progress indicator
                 const progress = ((i + 1) / count) * 100;
                 cameraOverlay.style.borderColor = `#19C586`;
-                cameraOverlay.style.borderImage = `linear-gradient(to right, #19C586 ${progress}%, #CDC7C7 ${progress}%) 1`;
+                // cameraOverlay.style.borderImage = `linear-gradient(to right, #19C586 ${progress}%, #CDC7C7 ${progress}%) 1`;
 
                 // Capture the image
                 const canvas = document.createElement('canvas');
