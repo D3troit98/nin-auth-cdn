@@ -1025,27 +1025,70 @@ function showSuccess(message) {
         const videoElement = document.getElementById('video-preview');
         const pictureElement = document.getElementById('picture-preview');
         const cameraOverlay = document.querySelector('.camera-overlay');
-        const camerContainer = document.querySelector('.camera-container');
+        const cameraContainer = document.querySelector('.camera-container');
 
         // Add SVG progress ring to camera overlay if it doesn't exist
         if (!document.querySelector('.progress-ring')) {
             const svgNS = "http://www.w3.org/2000/svg";
             const progressRing = document.createElementNS(svgNS, "svg");
             progressRing.setAttribute("class", "progress-ring");
-            progressRing.setAttribute("viewBox", "0 0 212 212"); // Match your camera container size
+            // Set viewBox to match the camera container dimensions
+            progressRing.setAttribute("viewBox", "0 0 212 289");
+            // Make the SVG fill the container
+            progressRing.style.position = "absolute";
+            progressRing.style.top = "0";
+            progressRing.style.left = "0";
+            progressRing.style.width = "100%";
+            progressRing.style.height = "100%";
+
+            // Calculate the center coordinates based on the container dimensions
+            const centerX = 212 / 2;
+            const centerY = 289 / 2;
+
+            // Calculate the radius (use the smaller of width/height to ensure it fits)
+            const radius = Math.min(centerX, centerY) - 10; // 10px padding
 
             const circle = document.createElementNS(svgNS, "circle");
             circle.setAttribute("class", "progress-ring-circle");
-            circle.setAttribute("cx", "106"); // Half of viewBox width
-            circle.setAttribute("cy", "106"); // Half of viewBox height
-            circle.setAttribute("r", "100"); // Slightly less than half to account for stroke width
+            circle.setAttribute("cx", centerX);
+            circle.setAttribute("cy", centerY);
+            circle.setAttribute("r", radius);
+
+            // Calculate the circumference for the stroke-dasharray
+            const circumference = 2 * Math.PI * radius;
+            circle.setAttribute("stroke-dasharray", circumference);
+            circle.setAttribute("stroke-dashoffset", circumference);
 
             progressRing.appendChild(circle);
-            camerContainer.appendChild(progressRing);
+            cameraContainer.appendChild(progressRing);
+
+            // Add CSS for the progress ring if not already present
+            if (!document.querySelector('#progress-ring-styles')) {
+                const styleElement = document.createElement('style');
+                styleElement.id = 'progress-ring-styles';
+                styleElement.textContent = `
+                    .progress-ring {
+                        z-index: 10;
+                        pointer-events: none;
+                    }
+                    .progress-ring-circle {
+                        fill: transparent;
+                        stroke: #4CAF50;
+                        stroke-width: 5;
+                        stroke-linecap: round;
+                        transform: rotate(-90deg);
+                        transform-origin: center;
+                        transition: stroke-dashoffset 0.3s ease;
+                    }
+                `;
+                document.head.appendChild(styleElement);
+            }
         }
 
-        // Get the progress ring circle
+        // Get the progress ring circle and its circumference
         const progressRingCircle = document.querySelector('.progress-ring-circle');
+        const radius = parseFloat(progressRingCircle.getAttribute('r'));
+        const circumference = 2 * Math.PI * radius;
 
         // Reset the global array before capturing new photos
         capturedImages = [];
@@ -1070,13 +1113,14 @@ function showSuccess(message) {
             statusDiv.style.color = 'white';
             statusDiv.style.background = 'rgba(0,0,0,0.5)';
             statusDiv.style.padding = '10px';
+            statusDiv.style.zIndex = '20';
             videoElement.parentNode.appendChild(statusDiv);
 
             // Capture multiple photos with intervals
             for (let i = 0; i < count; i++) {
                 // Update progress ring
                 const progress = (i / count) * 100;
-                const dashoffset = 628 - ((progress / 100) * 628);
+                const dashoffset = circumference - ((progress / 100) * circumference);
                 progressRingCircle.style.strokeDashoffset = dashoffset;
 
                 // Update status
@@ -1119,6 +1163,7 @@ function showSuccess(message) {
                 flash.style.backgroundColor = 'white';
                 flash.style.opacity = '0.8';
                 flash.style.transition = 'opacity 0.3s';
+                flash.style.zIndex = '15';
                 videoElement.parentNode.appendChild(flash);
 
                 setTimeout(() => {
