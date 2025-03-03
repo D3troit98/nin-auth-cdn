@@ -1059,14 +1059,9 @@ function showSuccess(message) {
                 }
 
                 // Update progress indicator
-const progress = ((i + 1) / count) * 100;
-cameraOverlay.style.setProperty('--progress', `${progress}%`);
-cameraOverlay.style.setProperty('--progress-color', '#19C586');
-cameraOverlay.style.setProperty('--default-color', '#CDC7C7');
-cameraOverlay.style.setProperty(
-    'background',
-    `conic-gradient(var(--progress-color) ${progress}%, var(--default-color) ${progress}%)`
-);
+                const progress = ((i + 1) / count) * 100;
+                cameraOverlay.style.borderColor = `linear-gradient(to right, #19C586 ${progress}%, #CDC7C7 ${progress}%) 1`;
+                // cameraOverlay.style.borderImage = `linear-gradient(to right, #19C586 ${progress}%, #CDC7C7 ${progress}%) 1`;
 
                 // Capture the image
                 const canvas = document.createElement('canvas');
@@ -1182,7 +1177,7 @@ function retakePhoto() {
             const requestData = {
                 nin: nin,
                 note: note,
-                images: capturedImages
+                images: capturedImages[0]
             };
 
             // Log the request data for debugging
