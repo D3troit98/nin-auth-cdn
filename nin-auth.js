@@ -1178,7 +1178,7 @@ function retakePhoto() {
             const requestData = {
                 nin: nin,
                 note: note,
-                images: capturedImages
+                images: capturedImages[0]
             };
 
             // Log the request data for debugging
