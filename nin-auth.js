@@ -359,7 +359,11 @@ function loadStep3() {
                 </h1>
                 <p class="heading-title">
                     The selfie does not match the NIN record. Please restart verification.
-                </p> </div>
+                </p>
+                <p class="heading-text">
+
+                </p>
+                 </div>
 
 
             </header>
@@ -1210,8 +1214,11 @@ function retakePhoto() {
             return result;
         } catch (error) {
             console.error("Error during verification:", error);
-            showToast(`Error during verification: ${error}`)
+            showToast(`Error during verification: ${error?.message || "Unknown error"}`);
+            document.querySelector('.heading-text').textContent = error?.message;
             loadStep3();
+
+
             showResult(false);
         } finally {
             // Reset button state
