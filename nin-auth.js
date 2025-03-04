@@ -1213,18 +1213,19 @@ function retakePhoto() {
 
             return result;
         } catch (error) {
-            console.error("Error during verification:", error);
+
+            loadStep3();
             showToast(`Error during verification: ${error?.message || "Unknown error"}`);
+            showResult(false);
+            console.error("Error during verification:", error);
+
             const headingText = document.querySelector('.heading-text');
             if (headingText) {
                 headingText.textContent = error?.message || "An error occurred";
             } else {
                 console.warn("Element with class 'heading-text' not found.");
             }
-            loadStep3();
 
-
-            showResult(false);
         } finally {
             // Reset button state
             if (submitButton) {
