@@ -1079,6 +1079,11 @@ function showSuccess(message) {
                 // Convert data URL to base64 string (remove the prefix)
                 const base64Image = capturedImage.split(',')[1];
 
+                // Calculate image size in bytes
+const imageSize = Math.ceil((base64Image.length * 3) / 4); // Base64 size calculation
+
+console.log(`Captured image size: ${imageSize} bytes`);
+
                 // Store the image in the global array
                 capturedImages.push({
                     image_type: "image_type_2",
