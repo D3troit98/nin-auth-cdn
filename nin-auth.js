@@ -1179,11 +1179,11 @@ function retakePhoto() {
         try {
 
           // Prepare the API request data
-            const requestData = {
-                nin: nin,
-                note: note,
-                images: [...capturedImages[0]] // Use only the first image for now
-            };
+          const requestData = {
+            nin,
+            note,
+            images: capturedImages.length > 0 ? [capturedImages[0]] : [] // Ensure it's an array
+        };
 
             // Log the request data for debugging
             console.log("Sending verification request:", requestData);
@@ -1215,7 +1215,12 @@ function retakePhoto() {
         } catch (error) {
             console.error("Error during verification:", error);
             showToast(`Error during verification: ${error?.message || "Unknown error"}`);
-            document.querySelector('.heading-text').textContent = error?.message;
+            const headingText = document.querySelector('.heading-text');
+            if (headingText) {
+                headingText.textContent = error?.message || "An error occurred";
+            } else {
+                console.warn("Element with class 'heading-text' not found.");
+            }
             loadStep3();
 
 
