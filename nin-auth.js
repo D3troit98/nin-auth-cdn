@@ -1209,10 +1209,10 @@ function retakePhoto() {
             console.log("API Response:", result);
 
             // Determine if verification was successful
-            const verificationStatus = response.status === 200 && result.status === "success";
+            const verificationStatus = response.status === 200 && result.status === 200;
 
             // Show the result UI
-            if(verificationStatus) showToast("Verification successful", "success")
+            if(verificationStatus) showToast(result?.message || "Verification successful", "success")
             loadStep3();
             showResult(verificationStatus);
 
